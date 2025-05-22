@@ -36,7 +36,7 @@ export default function Home() {
       </div>
 
       {/* first section */}
-      <div ref={navTrigger}  className="main__container ">
+      <div className="main__container ">
         <article className="main-content  bg-white flex justify-center items-center h-svh  ">
           <h1 className="text-center text-4xl ">this is some content</h1>
         </article>

@@ -1,4 +1,3 @@
-// schemas/hero.ts
 import { defineField, defineType } from "sanity";
 
 export default defineType({
@@ -14,22 +13,46 @@ export default defineType({
     }),
     defineField({
       name: "featuredArtwork",
-      title: "Featured Artwork",
+      title: "Main Featured Artwork",
       type: "reference",
       to: [{ type: "artwork" }],
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "secondaryArtwork1",
+      title: "Secondary Artwork 1",
+      type: "reference",
+      to: [{ type: "artwork" }],
+    }),
+    defineField({
+      name: "secondaryArtwork2",
+      title: "Secondary Artwork 2",
+      type: "reference",
+      to: [{ type: "artwork" }],
+    }),
+    defineField({
+      name: "secondaryArtwork3",
+      title: "Secondary Artwork 3",
+      type: "reference",
+      to: [{ type: "artwork" }],
+    }),
+    defineField({
+      name: "secondaryArtwork4",
+      title: "Secondary Artwork 4",
+      type: "reference",
+      to: [{ type: "artwork" }],
     }),
   ],
   preview: {
     select: {
       subtitle: "subtitle",
-      artworkTitle: "featuredArtwork.title",
+      mainArtworkTitle: "featuredArtwork.title",
       media: "featuredArtwork.mainImage",
     },
-    prepare({ subtitle, artworkTitle, media }) {
+    prepare({ subtitle, mainArtworkTitle, media }) {
       return {
         title: "Hero Section",
-        subtitle: subtitle || artworkTitle || "No content",
+        subtitle: subtitle || mainArtworkTitle || "No content",
         media,
       };
     },

@@ -8,6 +8,7 @@ import NavMenuButton from "./NavMenuButton";
 import NavPhone from "./NavPhone";
 import NavLinks from "./NavLinks";
 import NavMenu from "./NavMenu";
+import { bebasNeue } from "@/app/fonts";
 
 export default function Navbar({
   phoneVisible,
@@ -20,26 +21,26 @@ export default function Navbar({
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const tl = useRef();
 
-  useEffect(() => {
-    const navTrigger = contextSafe(() => {
-      ScrollTrigger.create({
-        trigger:navTriggerElement.current,
-        markers:false,
-        start:"top top",
-        end:"bottom-=500 top",
-        onToggle:(self)=>{
-          if(self.isActive){
-            navBgShow();
-          }
-          else{
-            navBgHide();
-          }
-        },
+  // useEffect(() => {
+  //   const navTrigger = contextSafe(() => {
+  //     ScrollTrigger.create({
+  //       trigger:navTriggerElement.current,
+  //       markers:false,
+  //       start:"top top",
+  //       end:"bottom-=500 top",
+  //       onToggle:(self)=>{
+  //         if(self.isActive){
+  //           navBgShow();
+  //         }
+  //         else{
+  //           navBgHide();
+  //         }
+  //       },
         
-      })
-    });
-    navTrigger();
-  });
+  //     })
+  //   });
+  //   navTrigger();
+  // });
 
   const { contextSafe } = useGSAP(() => {
       tl.current = gsap.timeline({
@@ -76,7 +77,7 @@ export default function Navbar({
       {/* nav background */}
       <div className="nav__background  opacity-0 rounded-b-xs  bg-black   left-0 right-0 h-full -z-10 absolute"></div>
       <div className="nav__left">
-        <NavLogo />
+        <NavLogo className={` ${bebasNeue.className}`} />
       </div>
       <div className="nav__right gap-5 lg:gap-10 flex">
         <NavMenuButton setMenuIsOpen={setMenuIsOpen} />
