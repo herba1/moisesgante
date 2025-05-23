@@ -41,15 +41,15 @@ export default async function Home() {
   console.log(data);
 
   return (
-    <div id="content" className={` `}>
+    <div id="content" className={`${ inter.className} text-primary `}>
       <HeroSection data={data}></HeroSection>
 
       {/* first section */}
       <div className="main__container ">
-        <article className="main-content  bg-primary flex justify-center items-center h-svh  ">
+        <article className="main-content  bg-secondary flex justify-center items-center h-svh  ">
           <h1 className="text-center text-4xl ">this is some content</h1>
         </article>
-        <article className="main-content  bg-primary flex justify-center items-center h-svh  ">
+        <article className="main-content  bg-secondary flex justify-center items-center h-svh  ">
           <h1 className="text-center text-4xl ">this is some content</h1>
         </article>
       </div>
