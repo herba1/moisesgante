@@ -1,6 +1,6 @@
 import { client } from "@/sanity/lib/client";
-import HeroSection from "./components/HeroSection";
 import { inter } from "./fonts";
+import HeroSection from "./components/HeroSection";
 
 // If loading a variable font, you don't need to specify the font weight
 
