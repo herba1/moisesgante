@@ -44,13 +44,19 @@ export default function HeroSection({ data }) {
         ease:'power1.outIn',
         scrollTrigger:{
             trigger:container.current,
-            markers:true,
+            markers:false,
             start:'top top',
             end:'bottom top',
             scrub:1,
         }
     }
     );
+
+    gsap.set('.collage__image',{
+        clipPath:'inset(50% 0% 50% 0%)',
+        translateY:-20,
+        scale:1.1,
+    })
 
     textTl.current
     .from(split1.current.chars,{
@@ -71,6 +77,13 @@ export default function HeroSection({ data }) {
         stagger:0.01,
         ease:'power4.out'
     },'start+=0.6')
+    .to('.collage__image',{
+        clipPath:'inset(0% 0% 0% 0%)',
+        translateY:0,
+        scale:1,
+        ease:'power3.out',
+        stagger:0.2,
+    },'end-=0.4')
 
     // start parralax here
     parralaxTl.current
@@ -115,10 +128,10 @@ export default function HeroSection({ data }) {
 
 
   return (
-    <div ref={container} className="h-svh relative -z-10 bg-secondary">
+    <div ref={container} className="h-svh relative overflow-hidden -z-10 bg-secondary">
       <Image
         src={urlFor(data.featuredArtwork.mainImage).url()}
-        className="-z-20 select-none lg:hidden absolute h-full saturate-150 w-full object-cover"
+        className="-z-20 collage__image select-none lg:hidden absolute h-full w-full object-cover"
         alt={data.featuredArtwork.mainImage.alt}
         fill="true"
       ></Image>
@@ -136,7 +149,7 @@ export default function HeroSection({ data }) {
             src={urlFor(data.secondaryArtwork1.mainImage)
               .width(imageSizes.image1.w)
               .url()}
-            className="object-cover"
+            className="object-cover collage__image "
             alt={data.secondaryArtwork1.mainImage.alt}
             fill
             sizes={`${imageSizes.image1.w}px`}
@@ -153,7 +166,7 @@ export default function HeroSection({ data }) {
             src={urlFor(data.secondaryArtwork2.mainImage)
               .width(imageSizes.image2.w)
               .url()}
-            className="object-cover"
+            className="object-cover collage__image "
             alt={data.secondaryArtwork2.mainImage.alt}
             fill
             sizes={`${imageSizes.image2.w}px`}
@@ -170,7 +183,7 @@ export default function HeroSection({ data }) {
             src={urlFor(data.secondaryArtwork3.mainImage)
               .width(imageSizes.image3.w)
               .url()}
-            className="object-cover"
+            className="object-cover collage__image "
             alt={data.secondaryArtwork3.mainImage.alt}
             fill
             sizes={`${imageSizes.image3.w}px`}
@@ -187,7 +200,7 @@ export default function HeroSection({ data }) {
             src={urlFor(data.secondaryArtwork4.mainImage)
               .width(imageSizes.image4.w)
               .url()}
-            className="object-cover"
+            className="object-cover collage__image "
             alt={data.secondaryArtwork4.mainImage.alt}
             fill
             sizes={`${imageSizes.image4.w}px`}
@@ -204,7 +217,7 @@ export default function HeroSection({ data }) {
             src={urlFor(data.secondaryArtwork5.mainImage)
               .width(imageSizes.image5.w)
               .url()}
-            className="object-cover"
+            className="object-cover collage__image "
             alt={data.secondaryArtwork5.mainImage.alt}
             fill
             sizes={`${imageSizes.image5.w}px`}
@@ -213,7 +226,7 @@ export default function HeroSection({ data }) {
       </div>
       <div className="z-10 flex flex-col justify-center items-center  h-full hero__content">
         <h1
-          className={` heroText1 text-8xl lg:text-9xl ${bebasNeue.className} leading-20 lg:leading-25   text-primary  text-center`}
+          className={`heroText1 text-8xl lg:text-9xl ${bebasNeue.className} leading-20 lg:leading-25   text-primary  text-center`}
         >
           Moises
         </h1>
