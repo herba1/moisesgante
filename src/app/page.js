@@ -1,53 +1,58 @@
-"use client";
-import StickyFooter from "./ui/StickyFooter";
-import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger, SplitText, ScrambleTextPlugin } from "gsap/all";
-import Navbar from "./ui/Navigation/Navbar";
-import { Inter } from "next/font/google";
-import { useRef } from "react";
+import { client } from "@/sanity/lib/client";
+import HeroSection from "./components/HeroSection";
+import { inter } from "./fonts";
 
 // If loading a variable font, you don't need to specify the font weight
-const inter = Inter({ subsets: ["latin"] });
 
-gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin);
+async function getData() {
+  return await client.fetch(`
+*[_type=='hero'][0]{
+  featuredArtwork->{
+    title, mainImage{alt, asset->{url},crop,hotspot}
+  },
+  secondaryArtwork1->{
+    title,
+    mainImage{alt, asset->{url},crop,hotspot}
+  },
+secondaryArtwork2->{
+    title,
+    mainImage{alt, asset->{url},crop,hotspot}
+  },
+secondaryArtwork3->{
+    title,
+    mainImage{alt, asset->{url},crop,hotspot}
+  },
+secondaryArtwork4->{
+    title,
+    mainImage{alt, asset->{url},crop,hotspot}
+  },
+secondaryArtwork5->{
+    title,
+    mainImage{alt, asset->{url},crop,hotspot}
+  },
+subtitle,title
 
-export default function Home() {
-  const navTrigger = useRef(null);
+}
+`);
+}
+
+export default async function Home() {
+  const data = await getData();
+  console.log(data);
 
   return (
-    <div id="content" className={``}>
-      <Navbar navTriggerElement={navTrigger} phoneVisible={false} ctaVisible={false}></Navbar>
-      {/* HERO BG SECTION */}
-      <div className="h-svh sticky top-0 -z-10 ">
-        <Image
-          src={"noise.gif"}
-          unoptimized
-          className="-z-20 select-none absolute h-full saturate-150 w-full object-cover"
-          alt="noise"
-          fill="true"
-        ></Image>
-        <div className="w-full h-full bg-black/20 absolute -z-10"></div>
-        <div className="z-10 flex flex-col justify-end h-full p-5">
-          <h1 className="   text-white max-w-80  text-7xl mb-1">
-            Lost Weathered And Torn
-          </h1>
-        </div>
-      </div>
+    <div id="content" className={` `}>
+      <HeroSection data={data}></HeroSection>
 
       {/* first section */}
       <div className="main__container ">
-        <article className="main-content  bg-white flex justify-center items-center h-svh  ">
+        <article className="main-content  bg-primary flex justify-center items-center h-svh  ">
           <h1 className="text-center text-4xl ">this is some content</h1>
         </article>
-        <article className="main-content  bg-white flex justify-center items-center h-svh  ">
-          <h1 className="text-center text-4xl ">this is some content</h1>
-        </article>
-        <article className="main-content  bg-white flex justify-center items-center h-svh  ">
+        <article className="main-content  bg-primary flex justify-center items-center h-svh  ">
           <h1 className="text-center text-4xl ">this is some content</h1>
         </article>
       </div>
-      <StickyFooter></StickyFooter>
     </div>
   );
 }

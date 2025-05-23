@@ -42,6 +42,12 @@ export default defineType({
       type: "reference",
       to: [{ type: "artwork" }],
     }),
+    defineField({
+      name: "secondaryArtwork5",
+      title: "Secondary Artwork 5",
+      type: "reference",
+      to: [{ type: "artwork" }],
+    }),
   ],
   preview: {
     select: {
