@@ -4,4 +4,8 @@
     --color-primary:rgb(250 250 250);
     --color-secondary:rgb(15 15 15);
     --color-highlight:rgb(55 158 255);
+
+    --spacing-small:0.5rem;
+    --spacing-medium:2rem;
+    --spacing-large:6rem;
 }

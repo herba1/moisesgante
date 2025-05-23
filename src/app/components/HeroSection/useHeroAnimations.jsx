@@ -52,6 +52,15 @@ export function useHeroAnimations(container) {
       scale: 1.1,
     });
 
+    gsap.set('.heroText1', {
+      opacity:100,
+    });
+    gsap.set('.heroText2', {
+      opacity:100,
+    });
+    gsap.set('.heroText3', {
+      opacity:100,
+    });
     // Text animations
     textTl.current
       .from(split1.current.chars, {
@@ -84,7 +93,11 @@ export function useHeroAnimations(container) {
         translateY: 0,
         scale: 1,
         ease: 'power3.out',
-      }, 'end');
+      }, 'end')
+      .to('.image__mobile__overlay', {
+        opacity:100,
+        ease: 'power3.out',
+      }, 'end')
 
     // Parallax animations
     parralaxTl.current
