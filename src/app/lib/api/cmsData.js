@@ -32,7 +32,6 @@ subtitle,title
 `);
 }
 
-
 export async function getFeaturedData() {
   return await client.fetch(
     `
@@ -51,6 +50,19 @@ artwork2->{
     alt, asset->{url},crop,hotspot
     }
   },
+}
+`
+  );
+}
+
+export async function getAboutShortData() {
+  return await client.fetch(
+    `
+*[_type == "about"][0]{
+  mainImage,
+  briefDescription,
+  qna,
+  name
 }
 `
   );

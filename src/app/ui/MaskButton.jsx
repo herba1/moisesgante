@@ -9,7 +9,7 @@ export default function MaskButton({
   text = "Gallery",
   isLink = true,
   href = "#",
-  padding = "12px",
+  padding = "10px",
   gap = "4px",
   className = "",
 }) {
@@ -90,10 +90,9 @@ export default function MaskButton({
       {/* unmask */}
       <div
         className={` button__mask w-full h-full absolute z-10 left-0 top-0 text-primary bg-red-400`}
-          style={{ padding:`${padding}` , gap:`${gap}`}}
       >
         <div
-          className={` button__text  flex items-center w-full h-full justify-center  `}
+          className={` button__text  flex items-center min-w-fit w-full h-full justify-center  `}
           style={{ padding:`${padding}` , gap:`${gap}`}}
         >
           <span>{text}</span>
@@ -101,6 +100,7 @@ export default function MaskButton({
         </div>
         <div
           className={` button__text  absolute top-0 -left-full w-full h-full  flex items-center justify-center `}
+          style={{ padding:`${padding}` , gap:`${gap}`}}
         >
           <span>{text}</span>
           <ArrowRight strokeWidth={2.5}></ArrowRight>

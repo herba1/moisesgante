@@ -11,6 +11,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useRef } from "react";
+import { Subtitle } from "@/app/ui/Headings";
+import { ParagraphAnimated } from "@/app/ui/ParagraphAnimated";
 
 export default function FeaturedSection({ data }) {
 
@@ -19,7 +21,7 @@ export default function FeaturedSection({ data }) {
   const components = {
     block: {
       normal: ({ children }) => (
-        <p className=" text-primary font-light ">{children}</p>
+        <ParagraphAnimated className=" text-primary font-light ">{children}</ParagraphAnimated>
       ),
     },
   };
@@ -27,11 +29,6 @@ export default function FeaturedSection({ data }) {
     <div>
       <div className=" leading-tight">
         <SectionHeader>{data.sectionTitle}</SectionHeader>
-        <SectionHeader>{data.sectionTitle}</SectionHeader>
-        <SectionHeader>{data.sectionTitle}</SectionHeader>
-        <SectionHeader>{data.sectionTitle}</SectionHeader>
-        <SectionHeader>{data.sectionTitle}</SectionHeader>
-
         <FeatureBlock
           media={
             <Image
@@ -42,9 +39,7 @@ export default function FeaturedSection({ data }) {
             ></Image>
           }
         >
-          <h1 className={`${bebasNeue.className} text-3xl xl:text-5xl `}>
-            {data.artwork1.title}
-          </h1>
+          <Subtitle text={data.artwork1.title}></Subtitle>
           <div className="md:max-w-md xl:max-w-xl md:self-end xl:text-lg">
             <PortableText
               value={data.artwork1.description}
@@ -66,9 +61,7 @@ export default function FeaturedSection({ data }) {
             ></Image>
           }
         >
-          <h1 className={`${bebasNeue.className} text-3xl xl:text-5xl `}>
-            {data.artwork2.title}
-          </h1>
+          <Subtitle text={data.artwork2.title}></Subtitle>
           <div className="md:max-w-md xl:max-w-xl md:self-end xl:text-lg">
             <PortableText
               value={data.artwork2.description}

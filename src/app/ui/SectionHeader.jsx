@@ -8,8 +8,8 @@ import { useRef } from "react";
 export default function SectionHeader({ children, className = "" }) {
     const container = useRef();
 
-
   useGSAP(() => {
+    // self contained items
     let title = container.current.querySelector('.section__title')
     let border = container.current.querySelector('.fake__border')
 
@@ -18,12 +18,13 @@ export default function SectionHeader({ children, className = "" }) {
     let tl = gsap.timeline({
       scrollTrigger: {
         trigger:container.current,
-        markers: true,
+        markers: false,
         start: "top 90%",
         end: "top 90%",
       }
     });
 
+    // set values
     gsap.set(border,{
         scaleX:0,
         transformOrigin:'left'
@@ -32,6 +33,7 @@ export default function SectionHeader({ children, className = "" }) {
         opacity:100,
     })
 
+    // tl animation
     tl.to(border,{
         scaleX:1,
         duration:1,
