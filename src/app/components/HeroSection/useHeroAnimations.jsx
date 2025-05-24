@@ -46,10 +46,8 @@ export function useHeroAnimations(container) {
       translateY: -20,
       scale: 1.1,
     });
-    gsap.set('.collage__image--mobile', {
+    gsap.set('.collage__image--mobile__clip', {
       clipPath: 'inset(100% 0% 0% 0%)',
-      translateY: -20,
-      scale: 1.1,
     });
 
     gsap.set('.heroText1', {
@@ -88,10 +86,8 @@ export function useHeroAnimations(container) {
         ease: 'power3.out',
         stagger: 0.2,
       }, 'end-=0.4')
-      .to('.collage__image--mobile', {
+      .to('.collage__image--mobile__clip', {
         clipPath: 'inset(0% 0% 0% 0%)',
-        translateY: 0,
-        scale: 1,
         ease: 'power3.out',
       }, 'end')
       .to('.image__mobile__overlay', {

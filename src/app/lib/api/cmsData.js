@@ -31,3 +31,27 @@ subtitle,title
 }
 `);
 }
+
+
+export async function getFeaturedData() {
+  return await client.fetch(
+    `
+    *[_type=='featuredSection'][0]{sectionTitle,
+  artwork1->{
+    title,
+    description,
+    mainImage{
+    alt, asset->{url},crop,hotspot
+    }
+  },
+artwork2->{
+    title,
+    description,
+    mainImage{
+    alt, asset->{url},crop,hotspot
+    }
+  },
+}
+`
+  );
+}
