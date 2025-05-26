@@ -72,7 +72,7 @@ export default function Navbar({
   return (
     <nav
       ref={navContainer}
-      className={` fixed z-10  w-full  nav__container text-white h-14 flex justify-between items-center p-3 lg:px-12 lg:py-10 ${className}`} 
+      className={` fixed z-20  w-full  nav__container text-white h-14 flex justify-between items-center p-3 lg:px-12 lg:py-10 ${className}`} 
     >
       {/* nav background */}
       <div className="nav__background  opacity-0 rounded-b-xs  bg-black   left-0 right-0 h-full -z-10 absolute"></div>
