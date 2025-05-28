@@ -1,13 +1,17 @@
-'use client'
-import { useEffect, useRef,  } from "react";
+"use client";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useLenis } from "@/context/LenisContext";
 
-
-export default function NavMenu({ menuIsOpen, setMenuIsOpen, children }) {
+export default function NavMenu({
+  menuIsOpen,
+  setMenuIsOpen,
+  children,
+  className = "",
+}) {
   const container = useRef();
   const menu = useRef();
   const tl = useRef();
@@ -57,7 +61,7 @@ export default function NavMenu({ menuIsOpen, setMenuIsOpen, children }) {
         .to(
           ".nav__menu",
           {
-            ease:'power4.out',
+            ease: "power4.out",
             clipPath: "polygon(0% 0%,100% 0% , 100% 100%, 0% 100%)",
             opacity: 1,
           },
@@ -77,11 +81,11 @@ export default function NavMenu({ menuIsOpen, setMenuIsOpen, children }) {
   return (
     <menu
       ref={container}
-      className={` z-10 opacity-0 cursor-not-allowed nav__menu__container fixed left-0 top-0 w-full  h-svh bg-black/40 grid  lg:grid-cols-2 sm:p-3 lg:p-5 sm:justify-end sm:items-end`}
+      className={` z-10 opacity-0 cursor-not-allowed nav__menu__container fixed left-0 top-0 w-full  h-svh bg-black/40 grid  lg:grid-cols-2  sm:justify-end sm:items-end ${className}`}
     >
       <div
         ref={menu}
-        className=" rounded-sm nav__menu opacity-0 cursor-default bg-pink-300 h-full w-full lg:col-start-2 lg:w-auto sm:w-[450px]"
+        className=" rounded-sm nav__menu opacity-0 cursor-default bg-primary text-secondary h-full w-full lg:col-start-2 lg:w-auto sm:w-[450px]"
       >
         <div
           className={`nav__menu__top h-16 flex items-center justify-between`}
@@ -94,19 +98,15 @@ export default function NavMenu({ menuIsOpen, setMenuIsOpen, children }) {
           </Link>
           <button
             type="button"
-            className=" active:rotate-0 active:scale-95 hover:rotate-8 hover:scale-105 transition-all"
+            className=" self-stretch active:rotate-0 active:scale-95 hover:rotate-8 hover:scale-105 transition-all "
+            onClick={() => {
+              setMenuIsOpen(false);
+            }}
           >
-            <X
-              onClick={() => {
-                setMenuIsOpen(false);
-              }}
-              size={48}
-              strokeWidth={1}
-              className="text-white "
-            ></X>
+            <X size={48} strokeWidth={1} className=" "></X>
           </button>
         </div>
-        <div className={`nav__menu__content h-full p-5`}></div>
+        <div className={`nav__menu__content h-full p-0`}></div>
       </div>
     </menu>
   );

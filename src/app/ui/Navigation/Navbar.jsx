@@ -72,7 +72,7 @@ export default function Navbar({
   return (
     <nav
       ref={navContainer}
-      className={` fixed z-20  w-full  nav__container text-white h-14 flex justify-between items-center p-3 lg:px-12 lg:py-10 ${className}`} 
+      className={` fixed z-20  w-full  nav__container text-white h-14 flex justify-between items-center p-small lg:px-medium lg:py-10  ${className}`} 
     >
       {/* nav background */}
       <div className="nav__background  opacity-0 rounded-b-xs  bg-black   left-0 right-0 h-full -z-10 absolute"></div>
@@ -80,13 +80,14 @@ export default function Navbar({
         <NavLogo className={` ${bebasNeue.className}`} />
       </div>
       <div className="nav__right gap-5 lg:gap-10 flex">
-        <NavMenuButton setMenuIsOpen={setMenuIsOpen} />
+        <NavMenuButton setMenuIsOpen={setMenuIsOpen} className=" lg:inline-block" />
         {phoneVisible && <NavPhone />}
         {ctaVisible && <NavCta />}
-        <NavLinks />
+        <NavLinks className=" lg:hidden" />
         <NavMenu
           menuIsOpen={menuIsOpen}
           setMenuIsOpen={setMenuIsOpen}
+          className=" sm:p-small lg:px-medium lg:py-medium"
         ></NavMenu>
       </div>
     </nav>

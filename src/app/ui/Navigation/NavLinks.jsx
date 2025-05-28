@@ -3,7 +3,7 @@ import LinkMask from "../LinkMask";
 import {LINKS} from "./LINKS";
 import NavDropdownLink from "./NavDropdownLink";
 
-export default function NavLinks() {
+export default function NavLinks({className=""}) {
 
   const links = LINKS.map((link) => {
     if (link.links) {
@@ -24,7 +24,7 @@ export default function NavLinks() {
     }
   });
   return (
-    <div className=" hidden  nav__links lg:flex text-center items-center">
+    <div className={`hidden  nav__links lg:flex text-center items-center ${className}`} >
       <ul className="flex text-lg items-center gap-5 lg:gap-10 ">
         {links}
       </ul>
