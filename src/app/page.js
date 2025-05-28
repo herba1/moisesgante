@@ -1,6 +1,6 @@
 import { inter } from "./fonts";
 import HeroSection from "./components/HeroSection";
-import { getHeroData,getFeaturedData, getAboutShortData } from "./lib/api/cmsData";
+import { getHeroData,getFeaturedData, getAboutShortData, getSocialMediaLinks } from "./lib/api/cmsData";
 import FeaturedSection from "./components/FeaturedSection";
 import AboutShort from "./components/AboutShort";
 import CTASection from "./components/CTASection";

@@ -1,13 +1,13 @@
 import { LenisProvider } from "@/context/LenisContext";
-import Navbar from "./ui/Navigation/Navbar";
-import StickyFooter from "./ui/StickyFooter";
 import { inter } from "./fonts";
-import FooterContent from "./ui/Footer/FooterContent";
 import PageLayout from "./ui/PageLayout";
+import { getSocialMediaLinks } from "./lib/api/cmsData";
 
 
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+
+
   return (
     <html lang="en">
       <body className={`antialiased ${inter.className}`}>

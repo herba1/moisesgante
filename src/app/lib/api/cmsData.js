@@ -67,3 +67,26 @@ export async function getAboutShortData() {
 `
   );
 }
+
+export async function getSocialMediaLinks(){
+  return await client.fetch(
+    `
+    *[_type == "socialMediaLinks"][0].links
+    `
+  )
+}
+
+// sanity/queries.js
+export async function getExtraFooterData() {
+  return await client.fetch(`
+    *[_type == "extraFooter"][0]{
+      items[]{
+        label,
+        linkType,
+        url,
+        "fileUrl": file.asset->url,
+        "fileName": file.asset->originalFilename
+      }
+    }
+  `);
+}
