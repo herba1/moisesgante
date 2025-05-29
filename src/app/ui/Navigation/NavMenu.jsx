@@ -98,7 +98,7 @@ export default function NavMenu({
           <NavLogo className={`${bebasNeue.className} lg:text-xl`}></NavLogo>
           <button
             type="button"
-            className=" cursor-pointer self-stretch active:rotate-0 active:scale-95 hover:rotate-8 hover:scale-105 transition-all "
+            className=" touch-manipulation cursor-pointer self-stretch active:rotate-0 active:scale-95 hover:rotate-8 hover:scale-105 transition-all "
             onClick={() => {
               setMenuIsOpen(false);
             }}
