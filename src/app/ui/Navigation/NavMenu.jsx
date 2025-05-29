@@ -5,18 +5,22 @@ import { X } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useLenis } from "@/context/LenisContext";
+import NavLogo from "./NavLogo";
+import { bebasNeue } from "@/app/fonts";
 
 export default function NavMenu({
   menuIsOpen,
   setMenuIsOpen,
   children,
   className = "",
+  footerChildren = <></>,
 }) {
   const container = useRef();
   const menu = useRef();
   const tl = useRef();
   const { lenis } = useLenis();
 
+  // handle outside click and stop scroll
   useEffect(() => {
     if (menuIsOpen && lenis) {
       openMenu();
@@ -38,6 +42,7 @@ export default function NavMenu({
     };
   }, [menuIsOpen]);
 
+  // gsap animation to open menu
   const { contextSafe } = useGSAP(
     () => {
       tl.current = gsap.timeline({ paused: true });
@@ -85,20 +90,15 @@ export default function NavMenu({
     >
       <div
         ref={menu}
-        className=" rounded-sm nav__menu opacity-0 cursor-default bg-primary text-secondary h-full w-full lg:col-start-2 lg:w-auto sm:w-[450px]"
+        className=" rounded-sm nav__menu opacity-0 cursor-default bg-primary text-secondary h-full w-full lg:col-start-2 lg:w-auto sm:w-[450px] flex flex-col "
       >
         <div
-          className={`nav__menu__top h-16 flex items-center justify-between`}
+          className={`nav__menu__header pl-small h-16 flex items-center justify-between`}
         >
-          <Link
-            href={"#"}
-            className=" pl-5 nav__logo font-extrabold text-2xl transform-3d   "
-          >
-            herb.
-          </Link>
+          <NavLogo className={`${bebasNeue.className} lg:text-xl`}></NavLogo>
           <button
             type="button"
-            className=" self-stretch active:rotate-0 active:scale-95 hover:rotate-8 hover:scale-105 transition-all "
+            className=" cursor-pointer self-stretch active:rotate-0 active:scale-95 hover:rotate-8 hover:scale-105 transition-all "
             onClick={() => {
               setMenuIsOpen(false);
             }}
@@ -106,7 +106,8 @@ export default function NavMenu({
             <X size={48} strokeWidth={1} className=" "></X>
           </button>
         </div>
-        <div className={`nav__menu__content h-full p-0`}></div>
+        <div className={`nav__menu__content grow p-small`}>{children}</div>
+        <div className={`nav__menu__footer p-small`}>{footerChildren}</div>
       </div>
     </menu>
   );

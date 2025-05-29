@@ -94,7 +94,7 @@ export default function LinkMask({
         </p>
       </div>
         <p
-          className={`w-fit text-transparent absolute LinkMask__underline mix-blend-difference  bg-white top-1 pointer-events-none ${textClassName}`}
+          className={`w-fit text-transparent absolute LinkMask__underline mix-blend-difference  bg-white top-0 pointer-events-none ${textClassName}`}
           style={{clipPath:"inset(94% 100% 0% 0%)"}}
         >
           {text}

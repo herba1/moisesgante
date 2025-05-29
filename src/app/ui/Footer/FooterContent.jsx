@@ -6,17 +6,12 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import PAGE_LINKS from "../../lib/PAGE_LINKS";
 
-const PAGE_LINKS = [
-  { label: "Home", url: "/home" },
-  { label: "Gallery", url: "/gallery" },
-  { label: "About", url: "/about" },
-  { label: "Contact", url: "/contact" },
-];
 
 function FooterLinkItem({ children }) {
   return (
-    <li className="font-medium italic overflow-clip hover:underline w-fit">{children}</li>
+    <li className="font-medium italic  hover:underline w-fit">{children}</li>
   );
 }
 
@@ -64,7 +59,7 @@ export default function FooterContent({ socialLinks = [], extraLinks = [] }) {
       ref={container}
       className="bg-primary text-secondary w-full h-full p-small lg:p-medium xl:p-large xl:py-medium"
     >
-      <div className="layout flex flex-col justify-between w-full h-full overflow-scroll ">
+      <div className="layout flex flex-col justify-between w-full h-full ">
         <div className="footer__header">moises gante</div>
         <div className="footer__content grid grid-rows-2 grid-cols-2 md:grid-cols-4 md:grid-rows-1 gap-small gap-y-medium ">
 
