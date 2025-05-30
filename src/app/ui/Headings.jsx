@@ -30,7 +30,7 @@ export function Subtitle({ text, className }) {
   return (
     <h1
       ref={container}
-      className={`${bebasNeue.className} opacity-0 text-3xl xl:text-5xl `}
+      className={`${bebasNeue.className} opacity-0 text-3xl xl:text-5xl ${className} `}
     >
       {text}
     </h1>

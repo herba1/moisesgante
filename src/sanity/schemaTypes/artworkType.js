@@ -31,6 +31,20 @@ export default defineType({
       description: 'The year the artwork was created.',
       validation: Rule => Rule.required().integer().min(1000).max(new Date().getFullYear() + 5),
     }),
+        defineField({
+      name: 'medium',
+      title: 'Medium',
+      type: 'string',
+      description: 'The medium or materials used for the artwork (e.g., "Charcoal on Bristol Paper", "Oil on Canvas").',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: 'size',
+      title: 'Size',
+      type: 'string',
+      description: 'The dimensions of the artwork (e.g., "18x24\"", "24x36 inches").',
+      validation: Rule => Rule.required(),
+    }),
     defineField({
       name: 'description',
       title: 'Description',

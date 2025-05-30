@@ -2,11 +2,11 @@ import { bebasNeue } from "@/app/fonts";
 import PAGE_LINKS from "@/app/lib/PAGE_LINKS";
 import LinkMask from "../LinkMask";
 
-export default function NavMenuContent({ socialLinks }) {
+export default function NavMenuContent({ socialLinks,setMenuIsOpen }) {
   let linkItems = PAGE_LINKS.map((item, index) => {
     return (
-      <li key={index} className={`${bebasNeue.className} text-8xl `}>
-        <LinkMask href={item.url}  text={item.label}></LinkMask>
+      <li key={index} onClick={()=>{setMenuIsOpen(false)}} className={`${bebasNeue.className} text-8xl `}>
+        <LinkMask  href={item.url} text={item.label}></LinkMask>
       </li>
     );
   });

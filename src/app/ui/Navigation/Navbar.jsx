@@ -103,7 +103,7 @@ export default function Navbar({
           socialLinks={socialLinks}
           footerChildren={<NavMenuFooter socialLinks={socialLinks}></NavMenuFooter>}
         >
-          <NavMenuContent></NavMenuContent>
+          <NavMenuContent setMenuIsOpen={setMenuIsOpen}></NavMenuContent>
         </NavMenu>
       </div>
     </nav>

@@ -90,3 +90,66 @@ export async function getExtraFooterData() {
     }
   `);
 }
+
+
+export async function getAllArtworkByYear() {
+  const artworks = await client.fetch(`
+    *[_type == "artwork"]{
+    title,
+    year,
+    slug{current},
+    description,
+    mainImage{
+    alt, asset->{url},crop,hotspot
+    },
+    additionalImages[]{
+      asset->{url},
+      caption,
+      alt,
+      crop,
+      hotspot,
+    }
+}
+    `);
+  let data = {};
+  artworks.map(artwork=>{
+    if(!data[artwork.year]){
+      data[artwork.year] = [artwork];
+    }
+    else if(data[artwork.year]){
+      data[artwork.year].push(artwork);
+    }
+  })
+  return data;
+}
+
+export async function getArtworkBySlug(slug){
+  return await client.fetch(
+    `
+    *[_type=='artwork' && slug.current == '${slug}'][0]{
+  _id,
+  title,
+  slug,
+  year,
+  medium,
+  size,
+  description,
+  mainImage{
+    alt,
+    asset->{
+      _id,
+      url
+    }
+  },
+  additionalImages[]{
+    alt,
+    caption,
+    asset->{
+      _id,
+      url
+    }
+  }
+}
+    `
+  )
+}

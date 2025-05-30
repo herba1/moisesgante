@@ -2,7 +2,6 @@ import { Fragment } from "react";
 import LinkMask from "../LinkMask";
 
 export default function NavMenuFooter({socialLinks = []}){
-    console.log(socialLinks)
     let i = 0;
 
     let socialListItems = socialLinks.map((item, index)=>{

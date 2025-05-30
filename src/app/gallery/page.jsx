@@ -1,25 +1,39 @@
-'use client'
-import Image from "next/image"
-import { inter } from "../fonts"
-import { Splide, SplideSlide } from "@splidejs/react-splide"
-import '@splidejs/react-splide/css/core'
+import GalleryCarousel from "../components/GalleryCarousel";
+import { inter } from "../fonts";
+import { getAllArtworkByYear } from "../lib/api/cmsData";
+import { Subtitle } from "../ui/Headings";
 
-export default function Gallery(){
+export default async function Gallery() {
+  const imageData = await getAllArtworkByYear();
 
-    return(
-    <div id="content" className={`${ inter.className} bg-secondary text-primary `}>
-        <main className=" min-h-lvh pt-large ">
-            <Splide options={{perPage:1, autoWidth:true, gap:"1rem", drag:'free', snap:'true', padding:{left:"1rem"}, type:'loop' }}>
-                <SplideSlide>
-                    <div className=" image__container relative w-[80vw] max-w-[360px] ">
-                        <img src={"/water.gif"} alt="water" className="w-full h-auto "  ></img>
-                    </div>
-                </SplideSlide>
-            </Splide>
-
-        </main>
-
+  return (
+    <div
+      id="content"
+      className={`${inter.className} bg-secondary text-primary `}
+    >
+      <main className=" min-h-lvh pt-large">
+        <section className="p-small lg:p-medium">
+            <Subtitle text={"Gallery"} className={` !text-8xl`}></Subtitle>
+        </section>
+        <section className="mt-medium">
+          <GalleryCarousel
+            images={imageData[2025]}
+            year={2025}
+          ></GalleryCarousel>
+        </section>
+        <section className="mt-large">
+          <GalleryCarousel
+            images={imageData[2024]}
+            year={2024}
+          ></GalleryCarousel>
+        </section>
+        <section className="mt-large pb-large">
+          <GalleryCarousel
+            images={imageData[2022]}
+            year={2022}
+          ></GalleryCarousel>
+        </section>
+      </main>
     </div>
-    )
-
+  );
 }
