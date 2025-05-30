@@ -100,7 +100,14 @@ export async function getAllArtworkByYear() {
     slug{current},
     description,
     mainImage{
-    alt, asset->{url},crop,hotspot
+    alt, asset->{url,
+     metadata {
+        dimensions {
+          width,
+          height
+        }
+      }
+    },crop,hotspot,
     },
     additionalImages[]{
       asset->{url},
@@ -138,7 +145,13 @@ export async function getArtworkBySlug(slug){
     alt,
     asset->{
       _id,
-      url
+      url,
+     metadata {
+        dimensions {
+          width,
+          height
+        }
+      }
     }
   },
   additionalImages[]{

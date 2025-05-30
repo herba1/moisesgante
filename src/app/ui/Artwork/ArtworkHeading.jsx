@@ -24,9 +24,9 @@ export default function ArtworkHeading({year="XXXX", title="Artwork", medium="me
     return(
         <div ref={container} className={`header__container text-primary ${bebasNeue.className} text-xl`}>
             <h3 className={`header__text`}>{year}</h3>
-            <h2 className=" header__text text-7xl">{title}</h2>
-            <h3 className="header__text">{medium}</h3>
-            <h3 className="header__text">{size}</h3>
+            <h2 className=" header__text text-7xl ">{title}</h2>
+            <h3 className="header__text">{medium} hello </h3>
+            <h3 className="header__text">{size} world</h3>
         </div>
     )
 
