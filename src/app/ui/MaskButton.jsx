@@ -4,15 +4,18 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function MaskButton({
   text = "Gallery",
-  isLink = true,
+  isLink = false,
   href = "#",
   padding = "10px",
   gap = "4px",
   className = "",
+  backButton=false,
 }) {
+  const router = useRouter();
   const buttonContainer = useRef();
   const tl = useRef();
 
@@ -59,9 +62,14 @@ export default function MaskButton({
   return (
     <button
       ref={buttonContainer}
-      className={` button__container transition-all active:scale-90 font-semibold relative w-fit h-fit bg-highlight text-secondary overflow-hidden rounded-lg ${className}`}
+      className={` hover:cursor-pointer button__container transition-all active:scale-90 font-semibold relative w-fit h-fit bg-highlight text-secondary overflow-hidden rounded-lg ${className}`}
       onMouseEnter={start}
       onMouseLeave={reverse}
+      onClick={()=>{
+        if(backButton){
+          router.back();
+        }
+      }}
     >
       {isLink && (
         <Link

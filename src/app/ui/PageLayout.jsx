@@ -10,7 +10,7 @@ export default async function PageLayout({ children }) {
 
   return (
     <div className="page__container ">
-      <Navbar className="text-base lg:text-xl" socialLinks={socialLinks}></Navbar>
+      <Navbar className="text-base lg:text-xl" background={false} socialLinks={socialLinks}></Navbar>
       <main className=" main__container relative z-10">{children}</main>
       <StickyFooter height="600px">
         <FooterContent

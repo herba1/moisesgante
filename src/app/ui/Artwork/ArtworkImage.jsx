@@ -18,7 +18,6 @@ export default function ArtworkImage({mainImage}){
             clipPath:'inset(0% 0 0 0)',
             ease:'power4.out',
             duration:1,
-            delay:0.5
         })
 
     })

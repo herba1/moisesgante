@@ -1,12 +1,16 @@
 'use client'
 import { useEffect } from "react"
+import { useLenis } from "@/context/LenisContext";
+import { useLayoutEffect } from "react";
 
 export default function ScrollToTop({children}){
+    const{ lenis } = useLenis();
 
-    useEffect(()=>{
-        window.scrollTo(0,0);
-    },[])
-
+    useLayoutEffect(()=>{
+        if(lenis){
+            lenis.scrollTo(0,{immediate:true})
+        }
+    },[lenis])
 
     return children;
 }

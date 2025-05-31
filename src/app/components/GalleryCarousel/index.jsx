@@ -10,21 +10,28 @@ import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import gsap from "gsap";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function GalleryCarouselSlide({ artwork }) {
+  console.log(artwork);
+  let width = artwork.mainImage.asset.metadata.dimensions.width;
+  let height = artwork.mainImage.asset.metadata.dimensions.height;
   return (
     <SplideSlide key={artwork.title}>
-      <div className=" image__container relative min-w-[240px] w-[80vw] max-w-[380px] lg:w-[29vw] lg:max-w-none h-auto ">
+      <div className={`image__container group relative min-w-[240px] w-[80vw] max-w-[380px] lg:w-[29vw] lg:max-w-none h-auto  `} 
+      style={{aspectRatio:`${width/height}`}}
+      
+      >
         <Image
-          width={500}
-          height={500}
+          width={200}
+          height={200}
           src={urlFor(artwork.mainImage).url()}
           alt="water"
-          className="w-full h-auto "
+          className="w-full h-auto  group-hover:opacity-80 group-active:opacity-60 transition-all duration-50 "
+          priority
         ></Image>
         <Link
-          className={`absolute left-0 top-0 w-full h-full z-10`}
+          className={`absolute group left-0 top-0 w-full h-full z-10`}
           href={`/gallery/${artwork.slug.current}`}
         ></Link>
       </div>
@@ -34,6 +41,9 @@ function GalleryCarouselSlide({ artwork }) {
 
 export default function GalleryCarousel({ images = [], year }) {
   const container = useRef();
+  const [initialIndex, setInitialIndex]=useState(0);
+  let index = 0;
+
 
   useGSAP(
     () => {
@@ -53,7 +63,7 @@ export default function GalleryCarousel({ images = [], year }) {
             delay:0.1,
           clipPath: "inset(0% 0 0 0)",
           stagger: 0.1,
-          duration: 0.5,
+          duration: 0.8,
           ease: "power4.out",
         }
       );
@@ -70,9 +80,27 @@ export default function GalleryCarousel({ images = [], year }) {
     );
   });
 
+
+// Safe localStorage wrapper
+const getLastIndex = () => {
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem(`GalleryCarousel${year}Index`);
+  }
+  return null;
+};
+let lastIndex=getLastIndex();
+
+const setLastIndex = (index) => {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(`GalleryCarousel${year}Index`, index);
+  }
+};
+
+
   return (
     <Splide
       options={{
+        start:lastIndex>-99?lastIndex:0,
         perPage: 3,
         autoWidth: true,
         gap: "2rem",
@@ -93,6 +121,9 @@ export default function GalleryCarousel({ images = [], year }) {
         },
       }}
       hasTrack={false}
+      onActive={(x)=>{
+        setLastIndex(x.index);
+      }}
     >
       <div className="p-small lg:p-medium flex justify-between">
         <Subtitle className={`${bebasNeue.className}`} text={year}></Subtitle>
@@ -106,7 +137,7 @@ export default function GalleryCarousel({ images = [], year }) {
         </div>
       </div>
 
-      <SplideTrack ref={container}>{slideItems}</SplideTrack>
+      <SplideTrack ref={container} className={'cursor-grab active:cursor-grabbing'} >{slideItems}</SplideTrack>
     </Splide>
   );
 }

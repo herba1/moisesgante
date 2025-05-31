@@ -159,7 +159,13 @@ export async function getArtworkBySlug(slug){
     caption,
     asset->{
       _id,
-      url
+      url,
+      metadata {
+        dimensions{
+        width,height 
+        }
+      
+      }
     }
   }
 }

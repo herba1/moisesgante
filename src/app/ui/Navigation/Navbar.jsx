@@ -11,6 +11,7 @@ import NavMenu from "./NavMenu";
 import { bebasNeue } from "@/app/fonts";
 import NavMenuContent from "./NavMenuContent";
 import NavMenuFooter from "./NavMenuFooter"; 
+import NavCta from "./NavCta";
 
 export default function Navbar({
   phoneVisible,
@@ -19,6 +20,7 @@ export default function Navbar({
   navTriggerElement,
   className = "",
   socialLinks = [],
+  background = true
 }) {
   const navContainer = useRef();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -81,20 +83,20 @@ export default function Navbar({
   return (
     <nav
       ref={navContainer}
-      className={` fixed z-20  w-full  nav__container text-white h-14 flex justify-between items-center p-small lg:px-medium lg:py-10  ${className}`}
+      className={` fixed z-20  w-full  nav__container text-white h-14 flex justify-between items-center p-small lg:px-medium lg:py-10 ${background===true?' ':' pointer-events-none'}  ${className} `}
     >
       {/* nav background */}
       <div className="nav__background  opacity-0 rounded-b-xs  bg-black   left-0 right-0 h-full -z-10 absolute"></div>
       <div className="nav__left">
-        <NavLogo className={` ${bebasNeue.className}`} />
+        <NavLogo className={` ${background===false?'pointer-events-auto': ' '} ${bebasNeue.className}`} />
       </div>
       <div className="nav__right gap-5 lg:gap-10 flex">
         <NavMenuButton
           setMenuIsOpen={setMenuIsOpen}
-          className=" lg:inline-block"
+          className={`lg:inline-block ${background===false?'pointer-events-auto':' '}`} 
         />
-        {phoneVisible && <NavPhone />}
-        {ctaVisible && <NavCta />}
+        {phoneVisible && <NavPhone className={background===false?'pointer-events-auto':' '} />}
+        {ctaVisible && <NavCta className={background===false?'pointer-events-auto':' '} />}
         <NavLinks className=" lg:hidden" />
         <NavMenu
           menuIsOpen={menuIsOpen}
