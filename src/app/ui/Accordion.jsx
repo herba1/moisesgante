@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ConfigResolutionError } from "sanity";
 
-export function AccordionItem({
+function AccordionItem({
   className = "",
   question = "This should be question",
   answer = "This should be answer",

@@ -5,56 +5,65 @@ import { useRef } from "react";
 import SplitText from "gsap/SplitText";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-export function ParagraphAnimated({ className, children }) {
+export function ParagraphAnimated({ className, children, type = "mask" }) {
+  // type == "fade | mask default mask"
+  // mask is by line, fade is whole paragraph
   const container = useRef();
 
   useGSAP(() => {
-    let splits = SplitText.create(container.current, {
-      type: "lines,chars",
-      mask: "lines",
-    });
-    gsap.fromTo(
-      splits.chars,
-      { yPercent: 100,opacity:1 },
-      {
-        yPercent: 0,
+    if (type === "mask") {
+      let splits = SplitText.create(container.current, {
+        type: "lines,chars",
+        mask: "lines",
+      });
+    gsap.set("p", { opacity: 1 });
+
+      gsap.fromTo(
+        splits.chars,
+        { yPercent: 100 },
+        {
+          yPercent: 0,
+          opacity: 1,
+          ease: "power4.out",
+          duration: 1,
+          stagger: 0.003,
+          scrollTrigger: {
+            trigger: container.current,
+            markers: false,
+            start: "top 80%",
+            start: "end 80%",
+          },
+        }
+      );
+    }
+
+    if (type === "fade") {
+      gsap.fromTo(container.current, {
+        y: 40,
+        opacity: 0,
+      },{
+        y:0,
         opacity:1,
-        ease: "power4.out",
-        duration: 1,
-        stagger: 0.003,
-        scrollTrigger:{
-          trigger:container.current,
-          markers:false,
-          start:'top 80%',
-          start:'end 80%',
+        scrollTrigger: {
+          trigger: container.current,
+          markers: false,
+          start: "top 90%",
+          end: "top 90%",
+        },
+      });
+    }
+
+    return () => {
+      if (type === "splits") {
+        if (splits) {
+          splits.revert();
         }
       }
-
-    );
-
-    // gsap.fromTo(container.current,{opacity:0, y:50},{
-    //     opacity:1,
-    //     y:0,
-    //     scrollTrigger:{
-    //         trigger:container.current,
-    //         start:"top 90%",
-    //         end:"top 90%"
-    //     }
-    // })
-
-    return (()=>{
-      if(splits){
-        splits.revert();
-      }
-    })
-
+    };
   }, {});
 
   return (
-    <p
-      ref={container}
-      className={` leading-tight font-light  ${className}`}
-    >
+    <p ref={container} className={` opacity-0 ${className}`}>
       {children}
     </p>
   );

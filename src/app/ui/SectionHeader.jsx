@@ -9,6 +9,7 @@ export default function SectionHeader({
   children,
   className = "",
   classNameUnderline = "",
+  classNameText="",
 }) {
   const container = useRef();
 
@@ -69,7 +70,7 @@ export default function SectionHeader({
       className={`relative text-primary mb-small lg:mb-medium ${className}`}
     >
       <h1
-        className={`${bebasNeue.className} opacity-0 section__title text-base lg:text-xl `}
+        className={`${bebasNeue.className} opacity-0 section__title text-base lg:text-xl ${classNameText} `}
       >
         {children}
       </h1>

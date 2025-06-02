@@ -55,6 +55,16 @@ artwork2->{
   );
 }
 
+
+export async function getAboutData() {
+  return await client.fetch(
+    `
+    *[_type=="about"][0]{fullDescription,qna, mainImage{alt,asset->{url,metadata{dimensions}}},artistStatement,briefDescription,name}
+    `
+  );
+}
+
+
 export async function getAboutShortData() {
   return await client.fetch(
     `
