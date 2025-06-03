@@ -1,7 +1,8 @@
 import { LenisProvider } from "@/context/LenisContext";
 import { inter } from "./fonts";
 import PageLayout from "./ui/PageLayout";
-import { getSocialMediaLinks } from "./lib/api/cmsData";
+import { Analytics } from "@vercel/analytics/next"
+
 
 
 
@@ -16,6 +17,7 @@ export default async function RootLayout({ children }) {
             {children}
           </PageLayout>
         </LenisProvider>
+        <Analytics></Analytics>
       </body>
     </html>
   );
