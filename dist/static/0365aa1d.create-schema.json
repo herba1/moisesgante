@@ -1,0 +1,838 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "The title of the artwork.",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Unique URL path for this artwork (e.g., /artworks/my-great-piece).",
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 1000
+              },
+              {
+                "flag": "max",
+                "constraint": 2030
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "The year the artwork was created.",
+        "name": "year",
+        "type": "number"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "The medium or materials used for the artwork (e.g., \"Charcoal on Bristol Paper\", \"Oil on Canvas\").",
+        "name": "medium",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "The dimensions of the artwork (e.g., \"18x24\"\", \"24x36 inches\").",
+        "name": "size",
+        "type": "string"
+      },
+      {
+        "description": "A detailed description of the artwork. Use rich text formatting as needed.",
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/"
+                                  ],
+                                  "allowRelative": false,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            },
+                            {
+                              "flag": "presence",
+                              "constraint": "required"
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "name": "href",
+                      "type": "url",
+                      "title": "URL"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Emphasis"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bullet List"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "H1"
+              },
+              {
+                "value": "h2",
+                "title": "H2"
+              },
+              {
+                "value": "h3",
+                "title": "H3"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "description",
+        "type": "array"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "The primary image representing this artwork (e.g., for thumbnails or hero sections).",
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "description": "Required for accessibility and SEO. Describes the image for screen readers.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alternative text"
+          }
+        ],
+        "name": "mainImage",
+        "type": "image"
+      },
+      {
+        "description": "Additional images for a gallery view of the artwork (e.g., detail shots, different angles).",
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Required for accessibility and SEO.",
+                "name": "alt",
+                "type": "string",
+                "title": "Alternative text"
+              },
+              {
+                "name": "caption",
+                "type": "string",
+                "title": "Caption (optional)"
+              }
+            ],
+            "type": "image"
+          }
+        ],
+        "name": "additionalImages",
+        "type": "array"
+      }
+    ],
+    "name": "artwork",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "description": "Heading for this featured section",
+        "name": "sectionTitle",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "to": [
+          {
+            "type": "artwork"
+          }
+        ],
+        "name": "artwork1",
+        "type": "reference",
+        "title": "First Featured Artwork"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "to": [
+          {
+            "type": "artwork"
+          }
+        ],
+        "name": "artwork2",
+        "type": "reference",
+        "title": "Second Featured Artwork"
+      }
+    ],
+    "name": "featuredSection",
+    "type": "document",
+    "title": "Featured Artworks Section"
+  },
+  {
+    "fields": [
+      {
+        "description": "Supporting text for the hero section",
+        "name": "subtitle",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "to": [
+          {
+            "type": "artwork"
+          }
+        ],
+        "name": "featuredArtwork",
+        "type": "reference",
+        "title": "Main Featured Artwork"
+      },
+      {
+        "to": [
+          {
+            "type": "artwork"
+          }
+        ],
+        "name": "secondaryArtwork1",
+        "type": "reference"
+      },
+      {
+        "to": [
+          {
+            "type": "artwork"
+          }
+        ],
+        "name": "secondaryArtwork2",
+        "type": "reference"
+      },
+      {
+        "to": [
+          {
+            "type": "artwork"
+          }
+        ],
+        "name": "secondaryArtwork3",
+        "type": "reference"
+      },
+      {
+        "to": [
+          {
+            "type": "artwork"
+          }
+        ],
+        "name": "secondaryArtwork4",
+        "type": "reference"
+      },
+      {
+        "to": [
+          {
+            "type": "artwork"
+          }
+        ],
+        "name": "secondaryArtwork5",
+        "type": "reference"
+      }
+    ],
+    "name": "hero",
+    "type": "document",
+    "title": "Hero Section"
+  },
+  {
+    "fields": [
+      {
+        "description": "Short summary or tagline",
+        "name": "briefDescription",
+        "type": "text"
+      },
+      {
+        "description": "Your name here",
+        "name": "name",
+        "type": "string",
+        "title": "Full Name"
+      },
+      {
+        "description": "Standard detailed description with rich text formatting",
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/"
+                                  ],
+                                  "allowRelative": false,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "name": "href",
+                      "type": "url",
+                      "title": "URL"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Emphasis"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bullet List"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h2",
+                "title": "H2"
+              },
+              {
+                "value": "h3",
+                "title": "H3"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "fullDescription",
+        "type": "array"
+      },
+      {
+        "description": "Personal artist statement block",
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Emphasis"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h3",
+                "title": "H3"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "artistStatement",
+        "type": "array"
+      },
+      {
+        "description": "Frequently asked questions and answers",
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "question",
+                "type": "text"
+              },
+              {
+                "name": "answer",
+                "type": "text"
+              }
+            ],
+            "type": "object",
+            "name": "questionAnswer",
+            "title": "Question & Answer"
+          }
+        ],
+        "name": "qna",
+        "type": "array",
+        "title": "Q&A Section"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Primary image for the about page",
+        "fields": [
+          {
+            "description": "Required for accessibility and SEO",
+            "name": "alt",
+            "type": "string",
+            "title": "Alternative text"
+          }
+        ],
+        "name": "mainImage",
+        "type": "image"
+      }
+    ],
+    "name": "about",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "description": "💡 Tip: For best display, keep your top 4 most important social media links at the beginning of this list",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Name of social media platform (e.g. Instagram, Facebook, etc.)",
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "uri",
+                        "constraint": {
+                          "options": {
+                            "scheme": [
+                              "/^http$/",
+                              "/^https$/"
+                            ],
+                            "allowRelative": false,
+                            "relativeOnly": false,
+                            "allowCredentials": false
+                          }
+                        }
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Full URL to your social media profile",
+                "name": "url",
+                "type": "url",
+                "title": "Profile URL"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "links",
+        "type": "array",
+        "title": "Social Media Links"
+      }
+    ],
+    "name": "socialMediaLinks",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "description": "Add any links or downloadable files (PDFs, images, etc.) try to keep minimum extra links 4 is a good amount",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Display text (e.g. 'Resume', 'Portfolio', 'LinkedIn', etc.)",
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "External URL",
+                      "value": "url"
+                    },
+                    {
+                      "title": "Downloadable File",
+                      "value": "file"
+                    }
+                  ],
+                  "layout": "radio"
+                },
+                "initialValue": "url",
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "valid",
+                        "constraint": [
+                          "url",
+                          "file"
+                        ]
+                      },
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "linkType",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "uri",
+                        "constraint": {
+                          "options": {
+                            "scheme": [
+                              "/^http$/",
+                              "/^https$/"
+                            ],
+                            "allowRelative": false,
+                            "relativeOnly": false,
+                            "allowCredentials": false
+                          }
+                        }
+                      },
+                      {
+                        "flag": "custom"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "External link (website, social media, etc.)",
+                "hidden": "conditional",
+                "name": "url",
+                "type": "url",
+                "title": "URL"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "custom"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Upload a file (PDF, image, etc.) for download",
+                "hidden": "conditional",
+                "name": "file",
+                "type": "file"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "items",
+        "type": "array",
+        "title": "Links & Downloads"
+      }
+    ],
+    "name": "extraFooter",
+    "type": "document",
+    "title": "Footer extra links and downloads"
+  },
+  {
+    "fields": [
+      {
+        "description": "Full name or display name",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "description": "Contact email address",
+        "name": "email",
+        "type": "email"
+      },
+      {
+        "description": "Phone or mobile number",
+        "name": "phone",
+        "type": "string",
+        "title": "Phone Number"
+      },
+      {
+        "description": "City, state, or general location",
+        "name": "location",
+        "type": "string"
+      }
+    ],
+    "name": "contactCard",
+    "type": "document"
+  }
+]

@@ -4,28 +4,28 @@ import { inter } from "@/app/fonts";
 import MaskButton from "../MaskButton";
 import InputField from "./InputField";
 import InputTextArea from "./InputTextArea";
+import { CircleCheck, CircleX, Cross } from "lucide-react";
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [fail, setFail] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setFail(false);
 
     // getting form data
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
     try {
-      const response = await fetch(
-        '/api/contact',
-        {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: { Accept: "application/json" },
-        }
-      );
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { Accept: "application/json" },
+      });
 
       if (response.ok) {
         setSubmitted(true);
@@ -33,6 +33,7 @@ export default function ContactForm() {
       }
     } catch (error) {
       console.error("Error:", error);
+      setFail(true);
     }
 
     setIsSubmitting(false);
@@ -42,7 +43,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className={`${inter.className} group`}>
       {/* Style however you want */}
-      <div className="flex flex-col gap-small items-stretch">
+      <div className={`flex flex-col gap-small items-stretch ${isSubmitting===true?'animate-pulse pointer-events-none ':''}`}>
         <div className="flex flex-col gap-small md:flex-row">
           <InputField
             name="name"
@@ -72,7 +73,11 @@ export default function ContactForm() {
           labelText="Message*:"
           placeholder="Message here..."
         ></InputTextArea>
-        <MaskButton text="Submit" type="submit"></MaskButton>
+        <div className="flex justify-between items-center">
+          <span className={`gap-1 transition-transform origin-left ${fail===true?'scale-x-100 flex':'scale-x-0 hidden'}`} ><CircleX className="text-red-500" ></CircleX>Something went wrong. Please try again or contact me manually.</span>
+          <span className={`gap-1 transition-transform origin-left ${submitted===true?'scale-x-100 flex':'scale-x-0 hidden'}`}><CircleCheck className="text-green-500"></CircleCheck>Thanks for reaching out! I'll respond as soon as possible.</span>
+          <MaskButton className="min-w-fit ml-auto" text="Submit" type="submit"></MaskButton>
+        </div>
       </div>
     </form>
   );
