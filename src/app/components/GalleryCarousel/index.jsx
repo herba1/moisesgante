@@ -17,9 +17,9 @@ function GalleryCarouselSlide({ artwork }) {
   let height = artwork.mainImage.asset.metadata.dimensions.height;
   return (
     <SplideSlide key={artwork.title}>
-      <div className={`image__container touch-manipulation group relative min-w-[240px] w-[80vw] max-w-[380px] lg:w-[28vw] lg:max-w-none h-auto  `} 
-      style={{aspectRatio:`${width/height}`}}
-      
+      <div
+        className={`image__container touch-manipulation group relative min-w-[240px] w-[80vw] max-w-[380px] lg:w-[28vw] lg:max-w-none h-auto  `}
+        style={{ aspectRatio: `${width / height}` }}
       >
         <Image
           width={400}
@@ -40,26 +40,25 @@ function GalleryCarouselSlide({ artwork }) {
 
 export default function GalleryCarousel({ images = [], year }) {
   const container = useRef();
-  const [initialIndex, setInitialIndex]=useState(0);
+  const [initialIndex, setInitialIndex] = useState(0);
   let index = 0;
-
 
   useGSAP(
     () => {
-        const elements = container.current.querySelectorAll('.image__container');
+      const elements = container.current.querySelectorAll(".image__container");
       gsap.fromTo(
         elements,
         {
           clipPath: "inset(100% 0 0 0)",
         },
         {
-            scrollTrigger:{
-                markers:false,
-                trigger:container.current,
-                start:'top 80%',
-                end:'top 80%',
-            },
-            delay:0.1,
+          scrollTrigger: {
+            markers: false,
+            trigger: container.current,
+            start: "top 80%",
+            end: "top 80%",
+          },
+          delay: 0.1,
           clipPath: "inset(0% 0 0 0)",
           stagger: 0.1,
           duration: 0.8,
@@ -79,32 +78,30 @@ export default function GalleryCarousel({ images = [], year }) {
     );
   });
 
+  // Safe localStorage wrapper
+  const getLastIndex = () => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem(`GalleryCarousel${year}Index`);
+    }
+    return null;
+  };
+  let lastIndex = getLastIndex();
 
-// Safe localStorage wrapper
-const getLastIndex = () => {
-  if (typeof window !== 'undefined') {
-    return localStorage.getItem(`GalleryCarousel${year}Index`);
-  }
-  return null;
-};
-let lastIndex=getLastIndex();
-
-const setLastIndex = (index) => {
-  if (typeof window !== 'undefined') {
-    localStorage.setItem(`GalleryCarousel${year}Index`, index);
-  }
-};
-
+  const setLastIndex = (index) => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem(`GalleryCarousel${year}Index`, index);
+    }
+  };
 
   return (
     <Splide
       options={{
-        start:lastIndex>-99?lastIndex:0,
+        start: lastIndex > -99 ? lastIndex : 0,
         perPage: 3,
         autoWidth: true,
         gap: "2rem",
-        drag: "free",
-        snap: "true",
+        // drag: "free",
+        // snap: "true",
         padding: { left: "2rem", right: "2rem" },
         breakpoints: {
           1024: {
@@ -118,9 +115,10 @@ const setLastIndex = (index) => {
             perPage: 1,
           },
         },
+        // Quick settling:
       }}
       hasTrack={false}
-      onActive={(x)=>{
+      onActive={(x) => {
         setLastIndex(x.index);
       }}
     >
@@ -136,7 +134,12 @@ const setLastIndex = (index) => {
         </div>
       </div>
 
-      <SplideTrack ref={container} className={'cursor-grab active:cursor-grabbing'} >{slideItems}</SplideTrack>
+      <SplideTrack
+        ref={container}
+        className={"cursor-grab active:cursor-grabbing"}
+      >
+        {slideItems}
+      </SplideTrack>
     </Splide>
   );
 }

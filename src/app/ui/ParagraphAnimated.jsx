@@ -13,20 +13,37 @@ export function ParagraphAnimated({ className, children, type = "mask" }) {
   useGSAP(() => {
     if (type === "mask") {
       let splits = SplitText.create(container.current, {
-        type: "lines,chars",
+        type: "lines",
         mask: "lines",
       });
     gsap.set("p", { opacity: 1 });
 
+      // gsap.fromTo(
+      //   splits.chars,
+      //   { yPercent: 100 },
+      //   {
+      //     yPercent: 0,
+      //     opacity: 1,
+      //     ease: "power4.out",
+      //     duration: 1,
+      //     stagger: 0.003,
+      //     scrollTrigger: {
+      //       trigger: container.current,
+      //       markers: false,
+      //       start: "top 80%",
+      //       start: "end 80%",
+      //     },
+      //   }
+      // );
       gsap.fromTo(
-        splits.chars,
+        splits.lines,
         { yPercent: 100 },
         {
           yPercent: 0,
           opacity: 1,
           ease: "power4.out",
           duration: 1,
-          stagger: 0.003,
+          stagger:0.1,
           scrollTrigger: {
             trigger: container.current,
             markers: false,

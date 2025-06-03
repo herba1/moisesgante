@@ -21,6 +21,8 @@ export default function AboutShort({ data }) {
               className=" mt-auto self-end"
               text={"Read Full Bio"}
               padding="10px"
+              isLink={true}
+              href="/about"
             ></MaskButton>
           </div>
           <div className="image__container w-full overflow-clip relative h-[40vh] max-h-96 min-h-64 rounded-md">

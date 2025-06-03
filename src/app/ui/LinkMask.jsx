@@ -75,7 +75,7 @@ export default function LinkMask({
       ref={container}
       onMouseOver={onEnter}
       onMouseLeave={onLeave}
-      className={`LinkMask__container inline-block overflow-visible relative ${className}`}
+      className={`LinkMask__container touch-manipulation inline-block overflow-visible relative ${className}`}
     >
       <Link
         href={href}
