@@ -108,6 +108,35 @@ export default defineType({
       description: "Frequently asked questions and answers",
     }),
     defineField({
+      name: "education",
+      title: "Education",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          name: "educationEntry",
+          title: "Education Entry",
+          fields: [
+            {
+              name: "degree",
+              title: "Degree/Diploma",
+              type: "string",
+            },
+            {
+              name: "institution",
+              title: "Institution",
+              type: "string",
+            },
+            {
+              name: "year",
+              title: "Year",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    }),
+    defineField({
       name: "mainImage",
       title: "Main Image",
       type: "image",

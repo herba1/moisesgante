@@ -73,7 +73,8 @@ export async function getAboutData() {
   },
   artistStatement,
   briefDescription,
-  name
+  name,
+  education
 }
     `
   );
