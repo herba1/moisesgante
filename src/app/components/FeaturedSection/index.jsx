@@ -1,16 +1,10 @@
 'use client'
-import { bebasNeue } from "@/app/fonts";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
 import MaskButton from "@/app/ui/MaskButton";
 import Image from "next/image";
 import FeatureBlock from "./FeatureBlock";
 import SectionHeader from "@/app/ui/SectionHeader";
-
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { useRef } from "react";
 import { Subtitle } from "@/app/ui/Headings";
 import { ParagraphAnimated } from "@/app/ui/ParagraphAnimated";
 
@@ -46,7 +40,7 @@ export default function FeaturedSection({ data }) {
               components={components}
             ></PortableText>
           </div>
-          <MaskButton padding="10px" className=" self-end"></MaskButton>
+          <MaskButton padding="10px" isLink={true} href="/gallery" className=" self-end"></MaskButton>
         </FeatureBlock>
 
         <FeatureBlock
@@ -68,7 +62,7 @@ export default function FeaturedSection({ data }) {
               components={components}
             ></PortableText>
           </div>
-          <MaskButton padding="10px" className=" self-end"></MaskButton>
+          <MaskButton padding="10px" isLink={true} href="/gallery" className=" self-end"></MaskButton>
         </FeatureBlock>
       </div>
     </div>

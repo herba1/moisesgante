@@ -14,6 +14,7 @@ export default function MaskButton({
   gap = "4px",
   className = "",
   backButton=false,
+  type = "button"
 }) {
   const router = useRouter();
   const buttonContainer = useRef();
@@ -65,6 +66,7 @@ export default function MaskButton({
       className={` hover:cursor-pointer button__container transition-all active:scale-90 font-semibold relative w-fit h-fit bg-highlight text-secondary overflow-hidden rounded-lg ${className}`}
       onMouseEnter={start}
       onMouseLeave={reverse}
+      type={type}
       onClick={()=>{
         if(backButton){
           router.back();

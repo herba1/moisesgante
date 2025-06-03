@@ -4,6 +4,7 @@ import { useHeroAnimations } from "./useHeroAnimations";
 import ImageCollage from "./ImageCollage";
 import HeroContent from "./HeroContent";
 import MobileHero from "./MobileHero";
+import LoadingScreen from "@/app/ui/LoadingScreen";
 
 export default function HeroSection({ data }) {
   const container = useRef(null);

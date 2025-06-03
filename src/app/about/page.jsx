@@ -11,14 +11,16 @@ import ImageAnimated from "../ui/ImageAnimated";
 
 // If loading a variable font, you don't need to specify the font weight
 
-
 export default async function Home() {
   const data = await getAboutData();
-  console.log(data);
 
   const components = {
     block: {
-      normal: ({ children }) => <ParagraphAnimated type="fade" className="mb-4 lg:text-lg">{children}</ParagraphAnimated>,
+      normal: ({ children }) => (
+        <ParagraphAnimated type="fade" className="mb-4 lg:text-lg">
+          {children}
+        </ParagraphAnimated>
+      ),
     },
     marks: {
       strong: ({ children }) => <strong>{children}</strong>,
@@ -51,7 +53,12 @@ export default async function Home() {
             </div>
           </div>
           <article className="flex-1/2">
-            <SectionHeader classNameText="text-xl lg:!text-2xl  " className="lg:!mb-small">Biography</SectionHeader>
+            <SectionHeader
+              classNameText="text-xl lg:!text-2xl  "
+              className="lg:!mb-small"
+            >
+              Biography
+            </SectionHeader>
             <PortableText
               value={data.fullDescription}
               components={components}
@@ -64,12 +71,19 @@ export default async function Home() {
         <Accordion title="What About Me?" data={data.qna}></Accordion>
       </section>
       <section className="p-small lg:p-medium pb-large mt-medium">
-        <SectionHeader classNameText="text-xl lg:!text-2xl  " className="lg:!mb-small">Artist Statement</SectionHeader>
+        <SectionHeader
+          classNameText="text-xl lg:!text-2xl  "
+          className="lg:!mb-small"
+        >
+          Artist Statement
+        </SectionHeader>
         <div className="more__text__container relative ">
-          <PortableText value={data.artistStatement} components={components}></PortableText>
+          <PortableText
+            value={data.artistStatement}
+            components={components}
+          ></PortableText>
         </div>
       </section>
-
     </main>
   );
 }

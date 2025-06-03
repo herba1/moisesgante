@@ -22,14 +22,12 @@ export default async function Page({ params }) {
     },
   };
 
-  console.log(data.mainImage);
 
   let additionalImages;
   if (data.additionalImages) {
     additionalImages = data.additionalImages.map((artwork, index) => {
       return <ArtworkImage key={index} mainImage={artwork}></ArtworkImage>;
     });
-    console.log(additionalImages);
   }
 
   return (

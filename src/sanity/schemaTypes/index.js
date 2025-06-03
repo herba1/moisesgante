@@ -4,6 +4,7 @@ import featuredSectionType from "./featuredSectionType";
 import heroType from "./heroType";
 import socialType from "./socialType";
 import extraFooterType from "./extraFooterType";
+import contactCardType from "./contactCardType";
 
 export const schema = {
   types: [
@@ -13,5 +14,6 @@ export const schema = {
     aboutType,
     socialType,
     extraFooterType,
+    contactCardType
   ],
 };

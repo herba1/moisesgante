@@ -1,0 +1,13 @@
+{
+  "forms": {
+    "contact": {
+      "name": "Contact Form", 
+      "actions": [
+        {
+          "type": "email",
+          "to": "herbart.dev@gmail.com"
+        }
+      ]
+    }
+  }
+}

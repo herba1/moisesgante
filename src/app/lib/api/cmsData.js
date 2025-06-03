@@ -59,7 +59,22 @@ artwork2->{
 export async function getAboutData() {
   return await client.fetch(
     `
-    *[_type=="about"][0]{fullDescription,qna, mainImage{alt,asset->{url,metadata{dimensions}}},artistStatement,briefDescription,name}
+    *[_type=="about"][0]{
+  fullDescription,
+  qna, 
+  mainImage{
+    alt,
+    crop,
+    hotspot,
+    asset->{
+      url,
+      metadata{dimensions}
+    }
+  },
+  artistStatement,
+  briefDescription,
+  name
+}
     `
   );
 }
@@ -181,4 +196,15 @@ export async function getArtworkBySlug(slug){
 }
     `
   )
+}
+
+export async function getContactCardData() {
+  return await client.fetch(`
+    *[_type=="contactCard"][0]{
+  email,
+  location,
+  name,
+  phone
+}
+  `);
 }

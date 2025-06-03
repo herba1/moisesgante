@@ -13,12 +13,11 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 
 function GalleryCarouselSlide({ artwork }) {
-  console.log(artwork);
   let width = artwork.mainImage.asset.metadata.dimensions.width;
   let height = artwork.mainImage.asset.metadata.dimensions.height;
   return (
     <SplideSlide key={artwork.title}>
-      <div className={`image__container group relative min-w-[240px] w-[80vw] max-w-[380px] lg:w-[28vw] lg:max-w-none h-auto  `} 
+      <div className={`image__container touch-manipulation group relative min-w-[240px] w-[80vw] max-w-[380px] lg:w-[28vw] lg:max-w-none h-auto  `} 
       style={{aspectRatio:`${width/height}`}}
       
       >
