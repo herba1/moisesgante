@@ -7,6 +7,9 @@ import { description, title } from "./lib/CONSTANTS";
 export const metadata = {
   title: { default: title, template: `%s | ${title}` },
   description: description,
+  openGraph:{
+    images:['/opengraph-image.png']
+  }
 };
 
 export default async function RootLayout({ children }) {
