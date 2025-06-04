@@ -8,11 +8,24 @@ import { PortableText } from "next-sanity";
 import { ParagraphAnimated } from "../ui/ParagraphAnimated";
 import Accordion from "../ui/Accordion";
 import ImageAnimated from "../ui/ImageAnimated";
+import ListElementAnimated from "../ui/ListElementAnimated";
 
 // If loading a variable font, you don't need to specify the font weight
 
 export default async function Home() {
   const data = await getAboutData();
+  console.log(data.education);
+
+  let educationItem = data.education.map((item, index) => {
+    return (
+      <ListElementAnimated key={index} className=" flex flex-col  items-center flex-wrap p-1 not-first:border-t-2 last:border-b-2 border-primary">
+        <p className="font-semibold md:text-lg">{item.degree}</p>
+        <p className="text-sm opacity-70 lg:text-base ">
+          {item.institution}, {item.year}
+        </p>
+      </ListElementAnimated>
+    );
+  });
 
   const components = {
     block: {
@@ -66,11 +79,29 @@ export default async function Home() {
           </article>
         </div>
       </section>
+      <section className="p-small lg:p-medium mt-large">
+        <SectionHeader
+          classNameText="text-xl lg:!text-2xl  "
+          className="lg:!mb-small"
+        >
+          Noteworthy Certifications
+        </SectionHeader>
+        <ul className=" flex flex-col gap-small">
+          {/* <li className=" flex  items-center flex-wrap gap-1 ">
+            <span className="font-semibold md:text-lg">Bachelor of Arts</span>
+            <span className="text-sm opacity-70 lg:text-base ">
+              // California State University Fresno,
+            </span>
+            <span className="text-sm opacity-70 lg:text-base"> 2025</span>
+          </li> */}
+          {educationItem}
+        </ul>
+      </section>
       {/* Accordion */}
-      <section className="p-small lg:p-medium mt-medium">
+      <section className="p-small lg:p-medium mt-large">
         <Accordion title="What About Me?" data={data.qna}></Accordion>
       </section>
-      <section className="p-small lg:p-medium pb-large mt-medium">
+      <section className="p-small lg:p-medium pb-large mt-large">
         <SectionHeader
           classNameText="text-xl lg:!text-2xl  "
           className="lg:!mb-small"

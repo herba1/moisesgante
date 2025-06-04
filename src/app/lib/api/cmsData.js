@@ -59,7 +59,8 @@ artwork2->{
 export async function getAboutData() {
   return await client.fetch(
     `
-    *[_type=="about"][0]{
+        *[_type=="about"][0]{
+    education,
   fullDescription,
   qna, 
   mainImage{
@@ -74,7 +75,6 @@ export async function getAboutData() {
   artistStatement,
   briefDescription,
   name,
-  education
 }
     `
   );

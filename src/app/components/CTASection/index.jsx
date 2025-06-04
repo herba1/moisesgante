@@ -44,7 +44,7 @@ export default function CTASection() {
       >
         Lets Make art
       </h1>
-      <MaskButton className="cta__button" text="Contact"></MaskButton>
+      <MaskButton className="cta__button" isLink={true} href="/contact" text="Contact"></MaskButton>
     </div>
   );
 }
