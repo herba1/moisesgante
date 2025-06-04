@@ -12,6 +12,10 @@ import ListElementAnimated from "../ui/ListElementAnimated";
 
 // If loading a variable font, you don't need to specify the font weight
 
+export const metadata = {
+  title: 'About' ,
+};
+
 export default async function Home() {
   const data = await getAboutData();
   console.log(data.education);

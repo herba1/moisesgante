@@ -16,7 +16,7 @@ export default function ListElementAnimated({ className, children}) {
       yPercent:0,
       scrollTrigger:{
         trigger:container.current,
-        markers:true,
+        markers:false,
         start:'top 85%',
         end:'top 85%',
       }

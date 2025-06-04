@@ -3,6 +3,11 @@ import { inter } from "../fonts";
 import { getAllArtworkByYear } from "../lib/api/cmsData";
 import { Subtitle } from "../ui/Headings";
 
+
+export const metadata = {
+  title: 'Gallery' ,
+};
+
 export default async function Gallery() {
   const imageData = await getAllArtworkByYear();
   const carousels = [];

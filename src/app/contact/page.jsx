@@ -5,6 +5,10 @@ import LoadingScreen from "../ui/LoadingScreen";
 import SectionHeader from "../ui/SectionHeader";
 // If loading a variable font, you don't need to specify the font weight
 
+export const metadata = {
+  title: 'Contact' ,
+};
+
 export default async function Home() {
   const contactCardData = await getContactCardData();
 

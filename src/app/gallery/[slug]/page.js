@@ -7,6 +7,22 @@ import SectionHeader from "@/app/ui/SectionHeader";
 import { PortableText } from "next-sanity";
 import { ParagraphAnimated } from "@/app/ui/ParagraphAnimated";
 import MaskButton from "@/app/ui/MaskButton";
+import { description } from "@/app/lib/CONSTANTS";
+
+export async function generateMetadata({ params }) {
+  // read route params
+  const { slug } = await params;
+  const data = await getArtworkBySlug(slug);
+  console.log(data)
+  return {
+    title: data.title,
+    description: `${data.year}, ${data.title}, ${data.medium}`,
+    openGraph:{
+      images:[data.mainImage.asset.url]
+    }
+  }
+}
+
 
 export default async function Page({ params }) {
   const { slug } = await params;
