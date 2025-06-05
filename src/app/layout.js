@@ -11,7 +11,6 @@ export const metadata = {
     images:['/opengraph-image.png']
   }
 };
-
 export default async function RootLayout({ children }) {
   return (
     <html lang="en">
