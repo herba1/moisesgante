@@ -38,8 +38,8 @@ export function LenisProvider({ children }) {
       lenisInstance.raf(time * 1000);
     });
 
-    // Disable lag smoothing in GSAP
-    gsap.ticker.lagSmoothing(0);
+    // // Disable lag smoothing in GSAP
+    // gsap.ticker.lagSmoothing(0);
 
     return () => {
       lenisInstance.destroy();

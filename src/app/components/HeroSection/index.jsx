@@ -122,7 +122,7 @@ export default function HeroSection({ data }) {
           start: "top top",
           end: "bottom top",
           // markers:true,
-          scrub: true,
+          scrub: 1,
         },
       });
       scrollTl.to(container.current, {
