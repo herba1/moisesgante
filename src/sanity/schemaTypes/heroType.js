@@ -20,34 +20,17 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "secondaryArtwork1",
-      title: "Secondary Artwork 1",
-      type: "reference",
-      to: [{ type: "artwork" }],
-    }),
-    defineField({
-      name: "secondaryArtwork2",
-      title: "Secondary Artwork 2",
-      type: "reference",
-      to: [{ type: "artwork" }],
-    }),
-    defineField({
-      name: "secondaryArtwork3",
-      title: "Secondary Artwork 3",
-      type: "reference",
-      to: [{ type: "artwork" }],
-    }),
-    defineField({
-      name: "secondaryArtwork4",
-      title: "Secondary Artwork 4",
-      type: "reference",
-      to: [{ type: "artwork" }],
-    }),
-    defineField({
-      name: "secondaryArtwork5",
-      title: "Secondary Artwork 5",
-      type: "reference",
-      to: [{ type: "artwork" }],
+      name: "artworks",
+      title: "Additional Artworks",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "artwork" }],
+        },
+      ],
+      validation: (Rule) => Rule.min(5).max(10),
+      description: "Select 3-10 additional artworks to display in the hero section",
     }),
   ],
   preview: {

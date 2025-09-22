@@ -24,7 +24,7 @@ function AccordionItem({
         dropdown,
         {
           height: "auto",
-          ease: " power4.out ",
+          ease: " power4.inOut",
           duration: 0.2,
         },
         0
@@ -33,7 +33,7 @@ function AccordionItem({
         chevron,
         {
           rotate: -180,
-          ease: " power4.out ",
+          ease: " power4.inOut",
           duration: 0.2,
         },
         0
@@ -57,13 +57,13 @@ function AccordionItem({
   return (
     <li ref={container} className={`accordion__item py-small  ${className}`}>
       <div onClick={toggle} className="flex justify-between cursor-pointer">
-        <span className=" text-lg font-medium xl:text-2xl  italic">
+        <span className=" text-lg ">
           {question}
         </span>
         <ChevronDown className=" accordion__chevron"></ChevronDown>
       </div>
-      <div className=" accordion__dropdown  h-0 overflow-clip xl:text-lg  ">
-        <p className=" p-small ">{answer}</p>
+      <div className=" accordion__dropdown  h-0 overflow-clip  ">
+        <p className=" p-small opacity-70 ">{answer}</p>
       </div>
     </li>
   );

@@ -13,8 +13,8 @@ export default function MaskButton({
   padding = "10px",
   gap = "4px",
   className = "",
-  backButton=false,
-  type = "button"
+  backButton = false,
+  type = "button",
 }) {
   const router = useRouter();
   const buttonContainer = useRef();
@@ -33,8 +33,8 @@ export default function MaskButton({
           ".button__text",
           {
             xPercent: 100,
-            ease: "power3.inOut",
-            duration: 0.35,
+            ease: "power4.inOut",
+            duration: 0.5,
           },
           "start"
         )
@@ -42,8 +42,8 @@ export default function MaskButton({
           ".button__mask",
           {
             clipPath: "inset(0% 0 0 0)",
-            ease: "power3.inOut",
-            duration: 0.35,
+            ease: "power4.inOut",
+            duration: 0.5,
           },
           "start"
         );
@@ -56,7 +56,7 @@ export default function MaskButton({
   });
   const reverse = contextSafe(() => {
     setTimeout(() => {
-      tl.current.timeScale(1.2).reverse();
+      tl.current.timeScale(1).reverse();
     }, 50);
   });
 
@@ -67,8 +67,8 @@ export default function MaskButton({
       onMouseEnter={start}
       onMouseLeave={reverse}
       type={type}
-      onClick={()=>{
-        if(backButton){
+      onClick={() => {
+        if (backButton) {
           router.back();
         }
       }}
@@ -84,14 +84,14 @@ export default function MaskButton({
       <div className="relative w-full h-full">
         <div
           className={` button__text  flex items-center w-full h-full justify-center `}
-          style={{ padding:`${padding}` , gap:`${gap}`}}
+          style={{ padding: `${padding}`, gap: `${gap}` }}
         >
           <span>{text}</span>
           <ArrowRight strokeWidth={2.5}></ArrowRight>
         </div>
         <div
           className={` button__text  absolute top-0 -left-full w-full h-full  flex items-center justify-center `}
-          style={{ padding:`${padding}` , gap:`${gap}`}}
+          style={{ padding: `${padding}`, gap: `${gap}` }}
         >
           <span>{text}</span>
           <ArrowRight strokeWidth={2.5}></ArrowRight>
@@ -103,14 +103,14 @@ export default function MaskButton({
       >
         <div
           className={` button__text  flex items-center min-w-fit w-full h-full justify-center  `}
-          style={{ padding:`${padding}` , gap:`${gap}`}}
+          style={{ padding: `${padding}`, gap: `${gap}` }}
         >
           <span>{text}</span>
           <ArrowRight strokeWidth={2.5}></ArrowRight>
         </div>
         <div
           className={` button__text  absolute top-0 -left-full w-full h-full  flex items-center justify-center `}
-          style={{ padding:`${padding}` , gap:`${gap}`}}
+          style={{ padding: `${padding}`, gap: `${gap}` }}
         >
           <span>{text}</span>
           <ArrowRight strokeWidth={2.5}></ArrowRight>

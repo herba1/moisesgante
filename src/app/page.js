@@ -18,19 +18,19 @@ export default async function Home() {
       <HeroSection data={data}></HeroSection>
 
       {/* first section */}
-      <main className="main__container ">
-        <section className="mt-large">
-          <div className=" featured__wrapper px-small lg:px-medium xl:px-large   ">
+      <main className="main__container relative z-20 bg-secondary ">
+        <section className="pt-32">
+          <div className=" featured__wrapper px-small lg:px-medium    ">
             <FeaturedSection data={dataFeatured}></FeaturedSection>
           </div>
         </section>
         <section className="mt-large ">
-          <div className=" aboutShort__wrapper px-small lg:px-medium xl:px-large ">
+          <div className=" aboutShort__wrapper px-small lg:px-medium  ">
             <AboutShort data={dataAbout}></AboutShort>
           </div>
         </section>
         <section className=" py-64 ">
-          <div className="cta__contact__container px-small lg:px-medium xl:px-large ">
+          <div className="cta__contact__container px-small lg:px-medium  ">
             <CTASection></CTASection>
           </div>
         </section>

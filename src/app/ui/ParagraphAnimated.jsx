@@ -15,6 +15,7 @@ export function ParagraphAnimated({ className, children, type = "mask" }) {
       let splits = SplitText.create(container.current, {
         type: "lines",
         mask: "lines",
+        autoSplit:true
       });
     gsap.set("p", { opacity: 1 });
 

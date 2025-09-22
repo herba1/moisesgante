@@ -10,6 +10,7 @@ export default function SectionHeader({
   className = "",
   classNameUnderline = "",
   classNameText="",
+  underline=true,
 }) {
   const container = useRef();
 
@@ -55,8 +56,9 @@ export default function SectionHeader({
         split.chars,
         {
           yPercent: 100,
-          stagger: 0.06,
-          ease: "power3.out",
+          stagger: 0.01,
+          duration:1.5,
+          ease: "power4.out",
         },
         "start"
       );
@@ -75,7 +77,7 @@ export default function SectionHeader({
         {children}
       </h1>
       <div
-        className={` fake__border max-w-full w-full scale-x-0  h-full absolute top-0 left-0 bg-primary ${className}`}
+        className={` fake__border max-w-full w-full scale-x-0  h-full absolute top-0 left-0 bg-primary ${className} ${underline?'':'hidden'} `}
         style={{ clipPath: "inset(92% 0 0 0)" }}
       ></div>
     </div>

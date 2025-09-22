@@ -7,7 +7,12 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import PAGE_LINKS from "../../lib/PAGE_LINKS";
+import { Bebas_Neue } from "next/font/google";
 
+const bebasNeue = Bebas_Neue({
+  weight: ["400"],
+  subsets: ["latin"],
+});
 
 function FooterLinkItem({ children }) {
   return (
@@ -27,29 +32,33 @@ function FooterLinkList({ children, title }) {
 export default function FooterContent({ socialLinks = [], extraLinks = [] }) {
   const container = useRef();
 
-  let pageLinkItems = PAGE_LINKS.map((item,index) => {
+  let pageLinkItems = PAGE_LINKS.map((item, index) => {
     return (
       <FooterLinkItem key={index}>
         <Link href={item.url}>{item.label}</Link>
       </FooterLinkItem>
     );
   });
-  let socialLinkItems = socialLinks.map((item,index) => {
+  let socialLinkItems = socialLinks.map((item, index) => {
     return (
       <FooterLinkItem key={index}>
-        <a href={item.url} rel="noopener noreferrer" target="_blank">{item.label}</a>
+        <a href={item.url} rel="noopener noreferrer" target="_blank">
+          {item.label}
+        </a>
       </FooterLinkItem>
     );
   });
-  let extraLinkItems = extraLinks.map((item,index) => {
+  let extraLinkItems = extraLinks.map((item, index) => {
     return (
       <FooterLinkItem key={index}>
-        <a 
-        href={item.linkType === 'url'?item.url:item.fileUrl}
-        rel={item.linkType === 'url'?'noopener noreferrer':''}
-        target={item.linkType === 'url'?'_blank':'_self'}
-        download={item.linkType === 'file'?item.fileName:undefined}
-        >{item.label}</a>
+        <a
+          href={item.linkType === "url" ? item.url : item.fileUrl}
+          rel={item.linkType === "url" ? "noopener noreferrer" : ""}
+          target={item.linkType === "url" ? "_blank" : "_self"}
+          download={item.linkType === "file" ? item.fileName : undefined}
+        >
+          {item.label}
+        </a>
       </FooterLinkItem>
     );
   });
@@ -57,23 +66,18 @@ export default function FooterContent({ socialLinks = [], extraLinks = [] }) {
   return (
     <div
       ref={container}
-      className="bg-primary text-secondary w-full h-full p-small lg:p-medium xl:p-large xl:py-medium"
+      className="bg-primary text-secondary w-full h-full p-small lg:p-medium  xl:py-medium"
     >
       <div className="layout flex flex-col justify-between w-full h-full ">
-        <div className="footer__header">moises gante</div>
+        <div className={`footer__header text-xl ${bebasNeue.className}`}>
+          moises gante
+        </div>
         <div className="footer__content grid grid-rows-2 grid-cols-2 md:grid-cols-4 md:grid-rows-1 gap-small gap-y-medium ">
+          <FooterLinkList title={"Pages"}>{pageLinkItems}</FooterLinkList>
+          <FooterLinkList title={"Socials"}>{socialLinkItems}</FooterLinkList>
+          <FooterLinkList title={"Extra"}>{extraLinkItems}</FooterLinkList>
 
-            <FooterLinkList title={'Pages'}>
-                {pageLinkItems}
-            </FooterLinkList>
-            <FooterLinkList title={'Socials'}>
-                {socialLinkItems}
-            </FooterLinkList>
-            <FooterLinkList title={'Extra'}>
-                {extraLinkItems}
-            </FooterLinkList>
-
-          <div className="relative w-full h-full  ">
+          <div className="relative w-full h-full rounded-md  overflow-clip  ">
             <Image
               unoptimized
               src="https://media.giphy.com/media/3oEjHNt87PnN2VfblC/giphy.gif?cid=ecf05e47p6d3ubbh2gok55xqmiaexpy1tzfhjfxlj2l00sqc&ep=v1_gifs_related&rid=giphy.gif&ct=g"
