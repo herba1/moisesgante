@@ -46,9 +46,6 @@ export default function HeroSection({ data }) {
         duration: 1.5,
         stagger: 0.02,
         ease: "power3.inOut",
-        onComplete: () => {
-          console.log("finish");
-        },
       })
         .fromTo(
           ".hero__marquee",
@@ -129,10 +126,17 @@ export default function HeroSection({ data }) {
         },
       });
       scrollTl.to(container.current, {
-        yPercent: 100,
-        opacity: 0.1,
+        // yPercent: 100,
+        opacity: 0.2,
         ease: "none",
-      })
+      }).to('.hero__mg',{
+        opacity:0,
+        ease:'none'
+      },'<').to('.image__collage',{
+        yPercent:100,
+        ease:'none'
+
+      },'<')
     },
     { scope: container }
   );

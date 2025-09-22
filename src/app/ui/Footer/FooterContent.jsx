@@ -80,8 +80,8 @@ export default function FooterContent({ socialLinks = [], extraLinks = [] }) {
           <div className="relative w-full h-full rounded-md  overflow-clip  ">
             <Image
               unoptimized
-              src="https://media.giphy.com/media/3oEjHNt87PnN2VfblC/giphy.gif?cid=ecf05e47p6d3ubbh2gok55xqmiaexpy1tzfhjfxlj2l00sqc&ep=v1_gifs_related&rid=giphy.gif&ct=g"
-              alt="water.gif"
+              src="/eye.webp"
+              alt="eyeball blinking"
               fill
               className=" object-cover hover:mix-blend-difference mix-blend-color-burn  "
             ></Image>

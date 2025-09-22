@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function ImageCollage({ data }) {
   const [loaded, setLoaded] = useState(0);
   const [refresh, setRefresh] = useState(false);
+  const windowWidth = useRef(0);
   const container = useRef();
   const track = useRef();
   const artworks = data.artworks;
@@ -19,15 +20,14 @@ export default function ImageCollage({ data }) {
     return (
       <div key={index} className={` relative inline-block img img${index}`}>
         <Image
-          src={urlFor(image.mainImage).url()}
-          width={500}
-          height={500}
-          className="h-[80vw] md:h-[25vw] xl:h-[20vw] w-auto "
+          src={urlFor(image.mainImage).quality(10).url()}
+          width={image.mainImage.asset.metadata.dimensions.width}
+          height={image.mainImage.asset.metadata.dimensions.height}
+          className="h-[80vw] md:h-[25vw] xl:h-[20vw]  w-auto "
           alt={image.mainImage.alt}
-          onLoad={() => {
-            setLoaded(loaded + 1);
-          }}
-          loading="eager"
+          placeholder="blur"
+          priority
+          blurDataURL={image.mainImage.asset.metadata.lqip}
         ></Image>
       </div>
     );
@@ -36,10 +36,14 @@ export default function ImageCollage({ data }) {
   // viewport resizer
   useEffect(() => {
     let timeout;
+    windowWidth.current = window.innerWidth;
     const handleResize = () => {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
-        setRefresh((prev) => !prev);
+        if (window.innerWidth != windowWidth.current) {
+          setRefresh((prev) => !prev);
+          windowWidth.current = window.innerWidth;
+        }
       }, 300);
     };
 
@@ -55,7 +59,7 @@ export default function ImageCollage({ data }) {
     () => {
       const images = container.current.querySelectorAll(".img");
       images.forEach((elem, index) => {
-        if(index >= images.length/2) return;
+        if (index >= images.length / 2) return;
         const random = gsap.utils.random(-10, 10);
         gsap.set(`.img${index}`, {
           rotate: random,
@@ -91,7 +95,7 @@ export default function ImageCollage({ data }) {
   );
 
   return (
-    <div ref={container} className="h-full grow relative z-0">
+    <div ref={container} className="h-full grow image__collage relative z-0">
       <div className="track__container pointer-events-none select-none relative animate-marquee grid items-center w-full h-full overflow-x-clip">
         <Image
           src={"star2.webp"}

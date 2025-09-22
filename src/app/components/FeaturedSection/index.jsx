@@ -48,7 +48,7 @@ export default function FeaturedSection({ data }) {
           reverse={true}
           media={
             <Image
-              src={urlFor(data.artwork2.mainImage).url()}
+              src={urlFor(data.artwork2.mainImage).quality(50).url()}
               alt={data.artwork2.mainImage.alt}
               fill
               className=" hover:scale-105 active:scale-105 duration-1000 transition-all ease-out 10s object-cover w-full h-full "

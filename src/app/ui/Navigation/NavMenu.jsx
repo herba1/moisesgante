@@ -86,7 +86,7 @@ export default function NavMenu({
   return (
     <menu
       ref={container}
-      className={` z-10 opacity-0 cursor-not-allowed nav__menu__container fixed left-0 top-0 w-full  h-svh bg-black/40 grid  lg:grid-cols-2  sm:justify-end sm:items-end ${className}`}
+      className={` z-10 opacity-0 cursor-not-allowed nav__menu__container fixed left-0 top-0 w-full  h-dvh bg-black/40 grid  lg:grid-cols-2  sm:justify-end sm:items-end ${className}`}
     >
       <div
         ref={menu}

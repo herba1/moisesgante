@@ -8,12 +8,7 @@ export async function getHeroData() {
         asset->{
           _id,
           url,
-          metadata{
-            dimensions{
-              width,
-              height
-            }
-          }
+          metadata
         },
         alt,
         hotspot,
