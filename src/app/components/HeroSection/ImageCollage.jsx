@@ -100,17 +100,19 @@ export default function ImageCollage({ data }) {
         <Image
           src={"star2.webp"}
           alt="stars"
-          width={2000}
-          height={2000}
+          width={480}
+          height={480}
           className="absolute w-full h-full hero__star1 overflow-visible object-cover top-0 bottom-0 z-20 mix-blend-normal brightness-150"
+          priority
           unoptimized
         ></Image>
         <Image
           src={"star2.webp"}
           alt="stars"
-          width={2000}
-          height={2000}
+          width={480}
+          height={480}
           className="absolute rotate-180  overflow-visible w-full h-full hero__star2 object-cover  z-0 top-0 bottom-0 scale-70  mix-blend-normal brightness-150 opacity-60"
+          priority
           unoptimized
         />
         <div

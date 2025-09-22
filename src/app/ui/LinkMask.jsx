@@ -79,8 +79,8 @@ export default function LinkMask({
     >
       <Link
         href={href}
-        className="w-full h-full left-0 right-0 absolute z-20"
-      ></Link>
+        className="w-full text-transparent h-full left-0 right-0 absolute z-20"
+      >{text}</Link>
       <div className="inline-block overflow-clip relative z-10">
         <p
           className={`LinkMask__text relative ${textClassName}`}

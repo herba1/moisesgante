@@ -103,6 +103,7 @@ export default function NavMenu({
               setMenuIsOpen(false);
             }}
           >
+            <span className="absolute text-transparent">Close</span>
             <X size={48} strokeWidth={1} className=" "></X>
           </button>
         </div>

@@ -11,7 +11,6 @@ import { ParagraphAnimated } from "@/app/ui/ParagraphAnimated";
 export default function FeaturedSection({ data }) {
 
 
-
   const components = {
     block: {
       normal: ({ children }) => (
@@ -26,9 +25,12 @@ export default function FeaturedSection({ data }) {
         <FeatureBlock
           media={
             <Image
-              src={urlFor(data.artwork1.mainImage).url()}
+              src={urlFor(data.artwork1.mainImage).quality(10).url()}
               alt={data.artwork1.mainImage.alt}
-              fill
+              height={data.artwork1.mainImage.asset.metadata.dimensions.height}
+              width={data.artwork1.mainImage.asset.metadata.dimensions.width}
+              placeholder="blur"
+              blurDataURL={data.artwork1.mainImage.asset.metadata.lqip}
               className=" hover:scale-105 active:scale-105 duration-1000 transition-all ease-out 10s object-cover w-full h-full "
             ></Image>
           }
@@ -48,9 +50,12 @@ export default function FeaturedSection({ data }) {
           reverse={true}
           media={
             <Image
-              src={urlFor(data.artwork2.mainImage).quality(50).url()}
+              src={urlFor(data.artwork2.mainImage).quality(10).url()}
               alt={data.artwork2.mainImage.alt}
-              fill
+              height={data.artwork2.mainImage.asset.metadata.dimensions.height}
+              width={data.artwork2.mainImage.asset.metadata.dimensions.width}
+              placeholder="blur"
+              blurDataURL={data.artwork2.mainImage.asset.metadata.lqip}
               className=" hover:scale-105 active:scale-105 duration-1000 transition-all ease-out 10s object-cover w-full h-full "
             ></Image>
           }

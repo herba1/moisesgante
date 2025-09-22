@@ -11,22 +11,6 @@ export default function HeroContent({ subtitle, className }) {
         className="h-[50vw] w-[110vw] sm:h-[20vw] bg-gradient-to-t -left-2  from-secondary to-secondary/0  absolute bottom-full "
       ></div>
       <div className="flex gap-4 tracking-tight hero__mg relative flex-col  items-center ">
-        {/* <Image
-          unoptimized
-          width={100}
-          height={100}
-          className="w-full sm:hidden hero__mg1 h-auto"
-          src={"mg2.svg"}
-          alt="Moises Gante"
-        ></Image>
-        <Image
-          unoptimized
-          width={100}
-          height={100}
-          className="hidden sm:block hero__mg2 w-full h-auto"
-          src={"mg.svg"}
-          alt="Moises Gante"
-        ></Image> */}
         <h1
           className={` ${bebasNeue.className} hidden sm:inline-block text-[22.5vw] -my-[4vw] text-nowrap leading-none`}
         >

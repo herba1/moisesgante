@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useHeroAnimations } from "./useHeroAnimations";
 import ImageCollage from "./ImageCollage";
 import HeroContent from "./HeroContent";
@@ -17,9 +17,21 @@ gsap.registerPlugin(ScrollTrigger, Observer);
 
 export default function HeroSection({ data }) {
   const container = useRef(null);
+  const [isLoading, setIsLoading]  = useState(true);
+
+  useEffect(()=>{
+    if(isLoading){
+      document.fonts.ready.then(()=>{
+        setIsLoading(false);
+      })
+    }
+  },[])
 
   useGSAP(
     () => {
+
+      if(isLoading) return;
+
       const tl = gsap.timeline({ delay: 0.5 });
       const mg = SplitText.create(".hero__mg", {
         type: "chars",
@@ -138,7 +150,7 @@ export default function HeroSection({ data }) {
 
       },'<')
     },
-    { scope: container }
+    { scope: container,dependencies:[isLoading] }
   );
 
   return (

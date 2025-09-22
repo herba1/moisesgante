@@ -28,21 +28,20 @@ export async function getFeaturedData() {
     title,
     description,
     mainImage{
-    alt, asset->{url},crop,hotspot
+    alt, asset->{url,metadata},crop,hotspot
     }
   },
 artwork2->{
     title,
     description,
     mainImage{
-    alt, asset->{url},crop,hotspot
+    alt, asset->{url,metadata},crop,hotspot
     }
   },
 }
 `
   );
 }
-
 
 export async function getAboutData() {
   return await client.fetch(
@@ -68,12 +67,19 @@ export async function getAboutData() {
   );
 }
 
-
 export async function getAboutShortData() {
   return await client.fetch(
     `
 *[_type == "about"][0]{
-  mainImage,
+  mainImage{
+    alt,
+    crop,
+    hotspot,
+    asset->{
+      url,
+      metadata{dimensions}
+    }
+  },
   briefDescription,
   qna,
   name
@@ -82,12 +88,12 @@ export async function getAboutShortData() {
   );
 }
 
-export async function getSocialMediaLinks(){
+export async function getSocialMediaLinks() {
   return await client.fetch(
     `
     *[_type == "socialMediaLinks"][0].links
     `
-  )
+  );
 }
 
 // sanity/queries.js
@@ -104,7 +110,6 @@ export async function getExtraFooterData() {
     }
   `);
 }
-
 
 export async function getAllArtworkByYear() {
   const artworks = await client.fetch(`
@@ -133,18 +138,17 @@ export async function getAllArtworkByYear() {
 }
     `);
   let data = {};
-  artworks.map(artwork=>{
-    if(!data[artwork.year]){
+  artworks.map((artwork) => {
+    if (!data[artwork.year]) {
       data[artwork.year] = [artwork];
-    }
-    else if(data[artwork.year]){
+    } else if (data[artwork.year]) {
       data[artwork.year].push(artwork);
     }
-  })
+  });
   return data;
 }
 
-export async function getArtworkBySlug(slug){
+export async function getArtworkBySlug(slug) {
   return await client.fetch(
     `
     *[_type=='artwork' && slug.current == '${slug}'][0]{
@@ -184,7 +188,7 @@ export async function getArtworkBySlug(slug){
   }
 }
     `
-  )
+  );
 }
 
 export async function getContactCardData() {

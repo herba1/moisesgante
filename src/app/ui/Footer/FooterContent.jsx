@@ -23,7 +23,9 @@ function FooterLinkItem({ children }) {
 function FooterLinkList({ children, title }) {
   return (
     <ul>
-      <h3 className=" text-xs">{title}</h3>
+      <li>
+        <h3 className=" text-xs">{title}</h3>
+      </li>
       {children}
     </ul>
   );

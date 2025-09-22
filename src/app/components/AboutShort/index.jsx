@@ -27,10 +27,11 @@ export default function AboutShort({ data }) {
           </div>
           <div className="image__container w-full overflow-clip relative h-[40vh] max-h-96 min-h-64 rounded-md">
             <Image
-              src={urlFor(data.mainImage).url()}
+              src={urlFor(data.mainImage).quality(10).url()}
               alt={data.mainImage.alt}
               className="object-cover"
-              fill
+              height={data.mainImage.asset.metadata.dimensions.height}
+              width={data.mainImage.asset.metadata.dimensions.width}
             ></Image>
           </div>
         </div>
