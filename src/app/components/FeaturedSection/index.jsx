@@ -25,7 +25,7 @@ export default function FeaturedSection({ data }) {
         <FeatureBlock
           media={
             <Image
-              src={urlFor(data.artwork1.mainImage).quality(10).url()}
+              src={urlFor(data.artwork1.mainImage).quality(50).url()}
               alt={data.artwork1.mainImage.alt}
               height={data.artwork1.mainImage.asset.metadata.dimensions.height}
               width={data.artwork1.mainImage.asset.metadata.dimensions.width}
@@ -50,7 +50,7 @@ export default function FeaturedSection({ data }) {
           reverse={true}
           media={
             <Image
-              src={urlFor(data.artwork2.mainImage).quality(10).url()}
+              src={urlFor(data.artwork2.mainImage).quality(50).url()}
               alt={data.artwork2.mainImage.alt}
               height={data.artwork2.mainImage.asset.metadata.dimensions.height}
               width={data.artwork2.mainImage.asset.metadata.dimensions.width}

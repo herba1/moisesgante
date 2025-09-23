@@ -4,13 +4,13 @@ import Image from "next/image";
 export default function HeroContent({ subtitle, className }) {
   return (
     <div
-      className={`z-40 p-2 sm:px-8 sm:pb-8 relative shrink flex flex-col justify-end h-fit bg-secondary hero__content ${className}`}
+      className={`z-40 p-2 hero__content sm:px-8 sm:pb-8 relative shrink flex flex-col justify-end h-fit bg-secondary hero__content ${className}`}
     >
       <div
         aria-hidden
         className="h-[50vw] w-[110vw] sm:h-[20vw] bg-gradient-to-t -left-2  from-secondary to-secondary/0  absolute bottom-full "
       ></div>
-      <div className="flex gap-4 tracking-tight hero__mg relative flex-col  items-center ">
+      <div className="flex gap-4 hero__title tracking-tight hero__mg relative flex-col  items-center ">
         <h1
           className={` ${bebasNeue.className} hidden sm:inline-block text-[22.5vw] -my-[4vw] text-nowrap leading-none`}
         >

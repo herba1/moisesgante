@@ -17,20 +17,19 @@ gsap.registerPlugin(ScrollTrigger, Observer);
 
 export default function HeroSection({ data }) {
   const container = useRef(null);
-  const [isLoading, setIsLoading]  = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(()=>{
-    if(isLoading){
-      document.fonts.ready.then(()=>{
+  useEffect(() => {
+    if (isLoading) {
+      document.fonts.ready.then(() => {
         setIsLoading(false);
-      })
+      });
     }
-  },[])
+  }, []);
 
   useGSAP(
     () => {
-
-      if(isLoading) return;
+      if (isLoading) return;
 
       const tl = gsap.timeline({ delay: 0.5 });
       const mg = SplitText.create(".hero__mg", {
@@ -53,12 +52,13 @@ export default function HeroSection({ data }) {
         deepSlice: false,
       });
 
-      tl.from(mg.chars, {
-        xPercent: -100,
-        duration: 1.5,
-        stagger: 0.02,
-        ease: "power3.inOut",
-      })
+      tl.from(container.current, { autoAlpha: 0, duration:0.01 })
+        .from(mg.chars, {
+          xPercent: -100,
+          duration: 1.5,
+          stagger: 0.02,
+          ease: "power3.inOut",
+        })
         .fromTo(
           ".hero__marquee",
           {
@@ -119,6 +119,7 @@ export default function HeroSection({ data }) {
 
       Observer.create({
         target: container.current,
+        type:'pointer',
         onMove: (e) => {
           star1X((e.x / window.innerWidth - 0.5) * 10);
           star1Y((e.y / window.innerHeight - 0.5) * 10);
@@ -137,26 +138,36 @@ export default function HeroSection({ data }) {
           scrub: 1,
         },
       });
-      scrollTl.to(container.current, {
-        // yPercent: 100,
-        opacity: 0.2,
-        ease: "none",
-      }).to('.hero__mg',{
-        opacity:0,
-        ease:'none'
-      },'<').to('.image__collage',{
-        yPercent:100,
-        ease:'none'
-
-      },'<')
+      scrollTl
+        .to(['.hero__title','.hero__subtitle'], {
+          opacity: 0,
+          scale:0.95,
+          ease: "none",
+        })
+        .to(
+          ".hero__mg",
+          {
+            opacity: 0,
+            ease: "none",
+          },
+          "<"
+        )
+        .to(
+          ".image__collage",
+          {
+            yPercent: 100,
+            ease: "none",
+          },
+          "<"
+        );
     },
-    { scope: container,dependencies:[isLoading] }
+    { scope: container, dependencies: [isLoading] }
   );
 
   return (
     <div
       ref={container}
-      className="h-svh flex flex-col justify-end relative overflow-hidden z-0 bg-secondary"
+      className="h-svh flex flex-col justify-end relative invisible overflow-hidden z-0 bg-secondary"
     >
       {/* <MobileHero featuredArtwork={data.featuredArtwork} /> */}
       <ImageCollage data={data} />

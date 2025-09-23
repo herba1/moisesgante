@@ -29,7 +29,7 @@ export default function AboutShort({ data }) {
             <Image
               src={urlFor(data.mainImage).quality(10).url()}
               alt={data.mainImage.alt}
-              className="object-cover"
+              className="object-cover w-full h-full "
               height={data.mainImage.asset.metadata.dimensions.height}
               width={data.mainImage.asset.metadata.dimensions.width}
             ></Image>
