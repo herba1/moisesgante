@@ -13,7 +13,7 @@ export async function generateMetadata({ params }) {
   // read route params
   const { slug } = await params;
   const data = await getArtworkBySlug(slug);
-  console.log(data)
+  // console.log(data)
   return {
     title: data.title,
     description: `${data.year}, ${data.title}, ${data.medium}`,

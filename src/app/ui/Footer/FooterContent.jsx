@@ -1,13 +1,11 @@
-"use client";
 import Link from "next/link";
-import LinkMask from "../LinkMask";
 import Image from "next/image";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
 import PAGE_LINKS from "../../lib/PAGE_LINKS";
 import { Bebas_Neue } from "next/font/google";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const bebasNeue = Bebas_Neue({
   weight: ["400"],
@@ -32,7 +30,6 @@ function FooterLinkList({ children, title }) {
 }
 
 export default function FooterContent({ socialLinks = [], extraLinks = [] }) {
-  const container = useRef();
 
   let pageLinkItems = PAGE_LINKS.map((item, index) => {
     return (
@@ -66,11 +63,8 @@ export default function FooterContent({ socialLinks = [], extraLinks = [] }) {
   });
 
   return (
-    <div
-      ref={container}
-      className="bg-primary text-secondary w-full h-full p-small lg:p-medium  xl:py-medium"
-    >
-      <div className="layout flex flex-col justify-between w-full h-full ">
+    <div className="bg-primary relative text-secondary overflow-hidden w-full h-full p-small lg:p-medium  xl:py-medium">
+      <div className="layout footer__elements flex flex-col justify-between w-full h-full ">
         <div className={`footer__header text-xl ${bebasNeue.className}`}>
           moises gante
         </div>
