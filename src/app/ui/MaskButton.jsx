@@ -63,7 +63,7 @@ export default function MaskButton({
   return (
     <button
       ref={buttonContainer}
-      className={` hover:cursor-pointer button__container transition-all active:scale-90 font-semibold relative w-fit h-fit bg-highlight text-secondary overflow-hidden rounded-lg ${className}`}
+      className={` hover:cursor-pointer button__container min-h-fit transition-all active:scale-90 font-semibold relative w-fit h-fit bg-highlight text-secondary overflow-hidden rounded-lg ${className}`}
       onMouseEnter={start}
       onMouseLeave={reverse}
       type={type}

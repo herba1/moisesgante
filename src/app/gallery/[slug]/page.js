@@ -58,7 +58,7 @@ export default async function Page({ params }) {
           ></ArtworkHeading>
           <ArtworkImage mainImage={data.mainImage} />
           {additionalImages}
-          <div className="sm:w-md w-full self-end pb-large">
+          <div className="sm:w-md w-full flex  flex-col self-end pb-large">
             <SectionHeader className="lg:mb-small">A Word</SectionHeader>
             <PortableText
               value={data.description}
@@ -66,7 +66,7 @@ export default async function Page({ params }) {
             ></PortableText>
             <MaskButton
               backButton={true}
-              className=" self-end z-10 mt-medium"
+              className=" ml-auto self-end z-10 mt-medium"
               text="Return to Gallery"
             ></MaskButton>
           </div>

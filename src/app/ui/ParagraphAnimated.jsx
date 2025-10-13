@@ -1,84 +1,101 @@
 "use client";
 import gsap from "gsap";
+import { useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import SplitText from "gsap/SplitText";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(SplitText);
+
 export function ParagraphAnimated({ className, children, type = "mask" }) {
   // type == "fade | mask default mask"
   // mask is by line, fade is whole paragraph
   const container = useRef();
+  const [isLoading, setIsLoading] = useState(true);
 
-  useGSAP(() => {
-    if (type === "mask") {
-      let splits = SplitText.create(container.current, {
-        type: "lines",
-        mask: "lines",
-        autoSplit:true
-      });
-    gsap.set("p", { opacity: 1 });
+  useEffect(() => {
+    document.fonts.ready.then(() => {
+      setIsLoading(false);
+    });
+  }, []);
 
-      // gsap.fromTo(
-      //   splits.chars,
-      //   { yPercent: 100 },
-      //   {
-      //     yPercent: 0,
-      //     opacity: 1,
-      //     ease: "power4.out",
-      //     duration: 1,
-      //     stagger: 0.003,
-      //     scrollTrigger: {
-      //       trigger: container.current,
-      //       markers: false,
-      //       start: "top 80%",
-      //       start: "end 80%",
-      //     },
-      //   }
-      // );
-      gsap.fromTo(
-        splits.lines,
-        { yPercent: 100 },
-        {
-          yPercent: 0,
-          opacity: 1,
-          ease: "power4.out",
-          duration: 1,
-          stagger:0.1,
-          scrollTrigger: {
-            trigger: container.current,
-            markers: false,
-            start: "top 80%",
-            start: "end 80%",
-          },
-        }
-      );
-    }
+  useGSAP(
+    () => {
+      if (isLoading) return;
+      if (type === "mask") {
+        let splits = SplitText.create(container.current, {
+          type: "lines",
+          mask: "lines",
+          autoSplit: true,
+        });
+        gsap.set("p", { opacity: 1 });
 
-    if (type === "fade") {
-      gsap.fromTo(container.current, {
-        y: 40,
-        opacity: 0,
-      },{
-        y:0,
-        opacity:1,
-        scrollTrigger: {
-          trigger: container.current,
-          markers: false,
-          start: "top 90%",
-          end: "top 90%",
-        },
-      });
-    }
-
-    return () => {
-      if (type === "splits") {
-        if (splits) {
-          splits.revert();
-        }
+        // gsap.fromTo(
+        //   splits.chars,
+        //   { yPercent: 100 },
+        //   {
+        //     yPercent: 0,
+        //     opacity: 1,
+        //     ease: "power4.out",
+        //     duration: 1,
+        //     stagger: 0.003,
+        //     scrollTrigger: {
+        //       trigger: container.current,
+        //       markers: false,
+        //       start: "top 80%",
+        //       start: "end 80%",
+        //     },
+        //   }
+        // );
+        gsap.fromTo(
+          splits.lines,
+          { yPercent: 100 },
+          {
+            yPercent: 0,
+            opacity: 1,
+            ease: "power4.out",
+            duration: 1,
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: container.current,
+              markers: false,
+              start: "top 90%",
+            },
+          }
+        );
       }
-    };
-  }, {});
+
+      if (type === "fade") {
+        gsap.fromTo(
+          container.current,
+          {
+            y: 40,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            scrollTrigger: {
+              trigger: container.current,
+              markers: false,
+              start: "top 90%",
+              end: "top 90%",
+            },
+          }
+        );
+      }
+
+      return () => {
+        if (type === "splits") {
+          if (splits) {
+            splits.revert();
+          }
+        }
+      };
+    },
+    { dependencies: [isLoading] }
+  );
 
   return (
     <p ref={container} className={` opacity-0 ${className}`}>
